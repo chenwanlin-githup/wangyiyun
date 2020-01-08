@@ -1,3 +1,3 @@
 <template>
-  <div>账号1111</div>
+  <div>账号</div>
 </template>
