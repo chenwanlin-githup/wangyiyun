@@ -2,9 +2,47 @@
   <div id="friend">
     <van-tabs sticky route>
       <van-tab>
-        内容1
+        <van-swipe :autoplay="3000" indicator-color="white">
+          <van-swipe-item>
+            <van-image
+          width="100%"
+          height="230px"
+          fit="scale-down"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+          </van-swipe-item>
+          <van-swipe-item>
+            <van-image
+          width="100%"
+          height="230px"
+          fit="scale-down"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+          </van-swipe-item>
+          <van-swipe-item>
+            <van-image
+          width="100%"
+          height="230px"
+          fit="scale-down"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+          </van-swipe-item>
+        </van-swipe>
+        <div class="link">
+          为喜欢的人做过那些事情
+          <i>2W人参加</i>
+        </div>
+        <div class="link">
+          为喜欢的人做过那些事情
+          <i>2W人参加</i>
+        </div>
+        <div class="link">
+          为喜欢的人做过那些事情
+          <i>2W人参加</i>
+        </div>
+        
         <div slot="title">
-          <van-icon name="add-o" />
+          <van-icon name="hot-o" />
         </div>
       </van-tab>
       <van-tab title="动态">
@@ -205,6 +243,16 @@
   </div>
 </template>
 <style scoped>
+.link{
+  width: 352px;
+  line-height: 193px;
+  border:5px solid #3C3C46;
+  background: rgba(0, 0, 0, 0.3) ;
+  color: whitesmoke;
+  font-size: 16px;
+  margin: 20px auto;
+  text-align: center;
+}
 .tab2{
   margin-bottom:25px
 }

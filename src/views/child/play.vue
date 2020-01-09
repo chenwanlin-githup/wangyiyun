@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="标题" >
+    <van-nav-bar title="陈奕迅" >
       <van-icon name="arrow-left" slot="left"  @click="toFrom()" />
     </van-nav-bar>
     <div class="circle"></div>
