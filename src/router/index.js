@@ -34,6 +34,11 @@ const routes = [
     ]
   },
   {
+    path: "/login",
+    name: "login",
+    component: () => import("../views/login.vue")
+  },
+  {
     path: "/play",
     name: "play",
     component: () => import("../views/child/play.vue")
@@ -41,8 +46,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes, //配置路由规则的
-  linkActiveClass: "vant-active" //覆盖默认路由高亮的类
+  routes //配置路由规则的
+  //linkActiveClass: 'vant-active', //覆盖默认路由高亮的类
 });
 
 export default router;
