@@ -11,7 +11,7 @@ const routes = [
     component: Index,
     children: [
       {
-        path: "/find",
+        path: "",
         name: "find",
         component: () => import("../views/child/findMusic.vue")
       },
