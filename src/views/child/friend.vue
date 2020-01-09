@@ -1,6 +1,6 @@
 <template>
   <div id="friend">
-    <van-tabs sticky>
+    <van-tabs sticky route>
       <van-tab>
         内容1
         <div slot="title">
@@ -19,7 +19,6 @@
               你要不要吃芒果 发布短视频：
               <p>12:00</p>
             </p>
-            <span>关注</span>
           </li>
           <li>
             <p>一个关于垃圾和资源回收的小动画,你有没装在包包里忘记扔掉的垃圾?</p>
@@ -27,9 +26,9 @@
             <p>爱电影不错过</p>
           </li>
           <li class="button">
-            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="orders-o" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="share" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
+            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
           </li>
         </ul>
         <ul class="tab2">
@@ -43,7 +42,6 @@
               你要不要吃芒果 发布短视频：
               <p>12:00</p>
             </p>
-            <span>关注</span>
           </li>
           <li>
             <p>一个关于垃圾和资源回收的小动画,你有没装在包包里忘记扔掉的垃圾?</p>
@@ -51,9 +49,9 @@
             <p>爱电影不错过</p>
           </li>
           <li class="button">
-            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="orders-o" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="share" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
+            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
           </li>
         </ul>
         <ul class="tab2">
@@ -67,7 +65,6 @@
               你要不要吃芒果 发布短视频：
               <p>12:00</p>
             </p>
-            <span>关注</span>
           </li>
           <li>
             <p>一个关于垃圾和资源回收的小动画,你有没装在包包里忘记扔掉的垃圾?</p>
@@ -75,9 +72,14 @@
             <p>爱电影不错过</p>
           </li>
           <li class="button">
-            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="orders-o" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="share" size="mini" type="primary" color="#7232dd" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
+            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
+          </li>
+          <li class="button">
+            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
+            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
           </li>
         </ul>
       </van-tab>
@@ -112,13 +114,90 @@
 	      	<dt>
             <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
           </dt>
-		      <dd></dd>
-		      <dd></dd>
+		      <dd>
+            <p>
+              <b>xxxxx</b>
+              <i>0.0001km</i>
+            </p>
+          </dd>
+		      <dd>
+            <p>最近在听: [Something I Need] -Ben Haenow</p>
+          </dd>
+    	</dl>
+      <dl class="nearby-dl">
+	      	<dt>
+            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
+          </dt>
+		      <dd>
+            <p>
+              <b>xxxxx</b>
+              <i>0.0001km</i>
+            </p>
+          </dd>
+		      <dd>
+            <p>最近在听: [Something I Need] -Ben Haenow</p>
+          </dd>
+    	</dl>
+      <dl class="nearby-dl">
+	      	<dt>
+            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
+          </dt>
+		      <dd>
+            <p>
+              <b>xxxxx</b>
+              <i>0.0001km</i>
+            </p>
+          </dd>
+		      <dd>
+            <p>最近在听: [Something I Need] -Ben Haenow</p>
+          </dd>
+    	</dl>
+      <dl class="nearby-dl">
+	      	<dt>
+            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
+          </dt>
+		      <dd>
+            <p>
+              <b>xxxxx</b>
+              <i>0.0001km</i>
+            </p>
+          </dd>
+		      <dd>
+            <p>最近在听: [Something I Need] -Ben Haenow</p>
+          </dd>
+    	</dl>
+      <dl class="nearby-dl">
+	      	<dt>
+            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
+          </dt>
+		      <dd>
+            <p>
+              <b>xxxxx</b>
+              <i>0.0001km</i>
+            </p>
+          </dd>
+		      <dd>
+            <p>最近在听: [Something I Need] -Ben Haenow</p>
+          </dd>
+    	</dl>
+      <dl class="nearby-dl">
+	      	<dt>
+            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
+          </dt>
+		      <dd>
+            <p>
+              <b>xxxxx</b>
+              <i>0.0001km</i>
+            </p>
+          </dd>
+		      <dd>
+            <p>最近在听: [Something I Need] -Ben Haenow</p>
+          </dd>
     	</dl>
       </van-tab>
-      <van-tab>
+      <van-tab :to="{name:'play'}">
         内容4
-        <div slot="title">
+        <div slot="title" >
           <van-icon name="service-o" />
         </div>
       </van-tab>
@@ -142,19 +221,9 @@
 
 .tab2 p {
   font-size: 12px;
-  width: 222px;
+  width: 265px;
 }
-.tab2 span {
-  width: 69px;
-  line-height: 29px;
-  display: block;
-  background: rgba(149, 149, 149, 1);
-  font-size: 14px;
-  color: white;
-  position: absolute;
-  right: 5px;
-  top: 50px;
-}
+
 .tab2 li div {
   width: 260px;
   height: 150px;
@@ -175,5 +244,11 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
+}
+.nearby-dl dd p{
+  font-size: 14px;
+}
+.nearby-dl dd p b{
+  margin-right:90px 
 }
 </style>
