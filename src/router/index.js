@@ -25,6 +25,7 @@ const routes = [
         name: "friend",
         component: () => import("../views/child/friend.vue")
       },
+
       {
         path: "/account",
         name: "account",
@@ -36,6 +37,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: () => import("../views/login.vue")
+  },
+  {
+    path: "/play",
+    name: "play",
+    component: () => import("../views/child/play.vue")
   }
 ];
 
