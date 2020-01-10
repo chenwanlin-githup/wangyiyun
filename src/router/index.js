@@ -11,7 +11,7 @@ const routes = [
     component: Index,
     children: [
       {
-        path: "/find",
+        path: "",
         name: "find",
         component: () => import("../views/child/findMusic.vue")
       },
@@ -42,6 +42,26 @@ const routes = [
     path: "/play",
     name: "play",
     component: () => import("../views/child/play.vue")
+  },
+  {
+    path: "/loginiPhone",
+    name: "loginiPhone",
+    component: () => import("../views/loginiPhone.vue")
+  },
+  {
+    path: "/loginRegister",
+    name: "loginRegister",
+    component: () => import("../views/loginRegister.vue")
+  },
+  {
+    path: "/loginVerify",
+    name: "loginVerify",
+    component: () => import("../views/loginVerify.vue")
+  },
+  {
+    path: "/loginName",
+    name: "loginName",
+    component: () => import("../views/loginName.vue")
   }
 ];
 
