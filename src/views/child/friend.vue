@@ -1,17 +1,13 @@
 <template>
   <div id="friend">
-
     <van-tabs sticky route  animated color="#90ee90">
       <van-tab >
           <!-- 轮播图 -->
-
         <van-swipe :autoplay="3000" indicator-color="white" >
           <van-swipe-item v-for="(i,index) in lbtimages" :key="index">
             <img :src="i.pic" width="100%">
           </van-swipe-item>
         </van-swipe>
-
-
         <!-- topics热门话题 -->
         <div class="topics">
           <h4>热门话题</h4>
@@ -30,14 +26,14 @@
           <van-icon name="hot-o" />
         </div>
       </van-tab>
-      <van-tab title="MV">
+      <van-tab title="艺人MV">
         <ul class="tab2" v-for="(video,id) in mv" :key="id" @click="bfmv(video.id)">
           <li>
             <p>
               <b style="font-size:18px;color:#999;text-decoration:line-through;">{{video.name}}</b>
-          <img :src="video.cover" class="" width="100%" />
-              <p>艺术家:<b style="color:#0099FF">{{video.artistName}}</b>
-              播放次数<b style="color:#FF0066">{{video.playCount}}</b></p>
+              <img :src="video.cover" width="100%" />
+              艺术家:<b style="color:#0099FF">{{video.artistName}}</b>
+              播放次数<b style="color:#FF0066">{{video.playCount}}</b>
             </p>
           </li>
           <li class="button">
@@ -48,39 +44,22 @@
           <hr/>
         </ul>
       </van-tab>
-      <van-tab title="Nearby">
-        <!-- <ul class="nearby-ul" v-for="item in list" :key="item.id">
-          <li>
-        <p class=""><b>{{item.name}}</b></p>
-            <van-image
-          width="100%"
-          height="230px"
-          fit="scale-down"
-          :src="item.coverImgUrl"
-        />
-          </li>
-          <li>
-        <p>{{item.description}}</p>
-          </li>
-        </ul> -->
-
-        <dl class="nearby-dl" v-for="(sites) in site" :key="sites.id">
-            <img :src="sites.coverImgUrl" alt="" width="100%">
+      <van-tab title="附近动态">
+        <dl class="nearby-dl" v-for="(sites) in site" :key="sites.id" @click="fjdt(sites.id)">
+            <img :src="sites.creator.avatarUrl"  width="100%">
 	      	<dt>
-            <img :src="sites.creator.avatarUrl" alt="">
+            <img :src="sites.creator.backgroundUrl" alt="">
           </dt>
 		      <dd>
-            <p>
+            <p style="color:red">
               <b>【{{sites.name}}】</b>
               {{sites.trackCount}}km
             </p>
           </dd>
 		      <dd>
-            <p>最近在听: {{sites.creator.signature}}--{{sites.creator.nickname}}</p>
+            <p>提供者：--{{sites.creator.nickname}}--</p>
           </dd>
     	</dl>
-
-
       </van-tab>
       <van-tab :to="{name:'play'}">
         内容4
@@ -109,12 +88,10 @@
   box-shadow: 10px 10px 5px #888888;
   padding-top:35px ;
 }
-
 .tab2 p {
   font-size: 12px;
   text-align: center
 }
-
 .tab2 li div {
   width: 260px;
   height: 150px;
@@ -124,7 +101,6 @@
   font-size: 12px;
   font-style:normal
 }
-
 /* 附近的样式 */
 .nearby-ul p b{
   color: chocolate;
@@ -159,7 +135,6 @@ import axios from 'axios';//引入axiso组件
 export default {
   data(){
     return{
-      list:[],
       lbtimages: [],
       links:[],
       mv:[],
@@ -175,16 +150,20 @@ export default {
           id:res
         }
       })
+    },
+    fjdt(res){
+      console.log(res)
+      this.$router.push({
+        name:"dynamic",
+        query:{
+          id:res
+        }
+      })
     }
   },
   created() {
     //--------------------http://net-music.penkuoer.com-------------------
-    //组件创建成功后执行
-    axios.get('http://net-music.penkuoer.com/top/playlist?limit=5&order=new').then(res =>{
-      // console.log(res);
-      // 歌单 ( 网友精选碟 ),修改数值展示数量
-      this.list = res.data.playlists;
-    }),
+    //}),
     axios.get('http://net-music.penkuoer.com/banner?type=1').then(res =>{
       //console.log(res.data.banners)
       // 轮播图
@@ -195,13 +174,13 @@ export default {
       // lick文字
       this.links = res.data.playlists
     }),
-    axios.get('http://net-music.penkuoer.com/mv/all').then(res =>{
+    axios.get('http://net-music.penkuoer.com/mv/all?area=内地').then(res =>{
       //console.log(res.data.data[0].id)
       //mv数据
       this.mv = res.data.data
     }),
-    axios.get('http://net-music.penkuoer.com/top/playlist?limit=20&order=new').then(res=>{
-      //console.log(res.data.playlists)
+    axios.get('http://net-music.penkuoer.com/top/playlist?limit=5&order=hot').then(res=>{
+      //console.log(res.data.playlists[0].id)
       //附近
       this.site = res.data.playlists
     })

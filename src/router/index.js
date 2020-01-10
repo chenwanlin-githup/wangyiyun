@@ -34,6 +34,11 @@ const routes = [
         path: "/mv",
         name: "mv",
         component: () => import("../views/child/mv.vue")
+      },
+      {
+        path: "/dynamic",
+        name: "dynamic",
+        component: () => import("../views/child/dynamic.vue")
       }
     ]
   },
