@@ -1,5 +1,6 @@
 <template>
   <div id="friend">
+
     <van-tabs sticky route  animated color="#90ee90">
       <van-tab >
           <!-- 轮播图 -->
@@ -23,93 +24,34 @@
         <!-- lick图情感屏幕 -->
         <div class="link" v-for="(i,index) in links" :key="index" >
           {{i.name}}
-          <p><b><i>{{i.subscribedCount}}</i>人</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<van-button icon="good-job" type="primary" text="点赞" size="mini" color="#000" plain/></p>
+          <p><b><i>{{i.subscribedCount}}</i>人</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<van-button icon="good-job" type="primary" text="点赞" size="mini" click="" color="#000" plain/></p>
         </div>
         <div slot="title">
           <van-icon name="hot-o" />
         </div>
       </van-tab>
-      <van-tab title="动态">
-        <ul class="tab2">
-          <img
-            src="http://img5.imgtn.bdimg.com/it/u=3389024522,3873098305&fm=26&gp=0.jpg"
-            class="tupian"
-            alt
-          />
+      <van-tab title="MV">
+        <ul class="tab2" v-for="(video,id) in mv" :key="id" @click="bfmv(video.id)">
           <li>
             <p>
-              你要不要吃芒果 发布短视频：
-              <p>12:00</p>
+              <b style="font-size:18px;color:#999;text-decoration:line-through;">{{video.name}}</b>
+          <img :src="video.cover" class="" width="100%" />
+              <p>艺术家:<b style="color:#0099FF">{{video.artistName}}</b>
+              播放次数<b style="color:#FF0066">{{video.playCount}}</b></p>
             </p>
           </li>
-          <li>
-            <p>一个关于垃圾和资源回收的小动画,你有没装在包包里忘记扔掉的垃圾?</p>
-            <div>电影</div>
-            <p>爱电影不错过</p>
-          </li>
           <li class="button">
             <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
             <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
             <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
           </li>
-        </ul>
-        <ul class="tab2">
-          <img
-            src="http://img5.imgtn.bdimg.com/it/u=3389024522,3873098305&fm=26&gp=0.jpg"
-            class="tupian"
-            alt
-          />
-          <li>
-            <p>
-              你要不要吃芒果 发布短视频：
-              <p>12:00</p>
-            </p>
-          </li>
-          <li>
-            <p>一个关于垃圾和资源回收的小动画,你有没装在包包里忘记扔掉的垃圾?</p>
-            <div>电影</div>
-            <p>爱电影不错过</p>
-          </li>
-          <li class="button">
-            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
-          </li>
-        </ul>
-        <ul class="tab2">
-          <img
-            src="http://img5.imgtn.bdimg.com/it/u=3389024522,3873098305&fm=26&gp=0.jpg"
-            class="tupian"
-            alt
-          />
-          <li>
-            <p>
-              你要不要吃芒果 发布短视频：
-              <p>12:00</p>
-            </p>
-          </li>
-          <li>
-            <p>一个关于垃圾和资源回收的小动画,你有没装在包包里忘记扔掉的垃圾?</p>
-            <div>电影</div>
-            <p>爱电影不错过</p>
-          </li>
-          <li class="button">
-            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
-          </li>
-          <li class="button">
-            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>36</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>3</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;<i>转发</i>
-          </li>
+          <hr/>
         </ul>
       </van-tab>
-      <van-tab title="附近">
-        <ul class="nearby-ul" v-for="item in list" :key="item.id">
+      <van-tab title="Nearby">
+        <!-- <ul class="nearby-ul" v-for="item in list" :key="item.id">
           <li>
         <p class=""><b>{{item.name}}</b></p>
-
             <van-image
           width="100%"
           height="230px"
@@ -120,79 +62,25 @@
           <li>
         <p>{{item.description}}</p>
           </li>
-        </ul>
-       
-       <dl class="nearby-dl">
+        </ul> -->
+
+        <dl class="nearby-dl" v-for="(sites) in site" :key="sites.id">
+            <img :src="sites.coverImgUrl" alt="" width="100%">
 	      	<dt>
-            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
+            <img :src="sites.creator.avatarUrl" alt="">
           </dt>
 		      <dd>
             <p>
-              <b>xxxxx</b>
-              <i>0.0001km</i>
+              <b>【{{sites.name}}】</b>
+              {{sites.trackCount}}km
             </p>
           </dd>
 		      <dd>
-            <p>最近在听: [Something I Need] -Ben Haenow</p>
+            <p>最近在听: {{sites.creator.signature}}--{{sites.creator.nickname}}</p>
           </dd>
     	</dl>
-      <dl class="nearby-dl">
-	      	<dt>
-            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
-          </dt>
-		      <dd>
-            <p>
-              <b>xxxxx</b>
-              <i>0.0001km</i>
-            </p>
-          </dd>
-		      <dd>
-            <p>最近在听: [Something I Need] -Ben Haenow</p>
-          </dd>
-    	</dl>
-      <dl class="nearby-dl">
-	      	<dt>
-            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
-          </dt>
-		      <dd>
-            <p>
-              <b>xxxxx</b>
-              <i>0.0001km</i>
-            </p>
-          </dd>
-		      <dd>
-            <p>最近在听: [Something I Need] -Ben Haenow</p>
-          </dd>
-    	</dl>
-      <dl class="nearby-dl">
-	      	<dt>
-            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
-          </dt>
-		      <dd>
-            <p>
-              <b>xxxxx</b>
-              <i>0.0001km</i>
-            </p>
-          </dd>
-		      <dd>
-            <p>最近在听: [Something I Need] -Ben Haenow</p>
-          </dd>
-    	</dl>
-      <dl class="nearby-dl">
-	      	<dt>
-            <img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="">
-          </dt>
-		      <dd>
-            <p>
-              <b>xxxxx</b>
-              <i>0.0001km</i>
-            </p>
-          </dd>
-		      <dd>
-            <p>最近在听: [Something I Need] -Ben Haenow</p>
-          </dd>
-    	</dl>
-     
+
+
       </van-tab>
       <van-tab :to="{name:'play'}">
         内容4
@@ -208,35 +96,22 @@
   text-indent:-200px
 }
 .link{
-  width: 320px;
-  height: 90px;
+  width: 90%;
+  height: 100px;
   border:5px solid #3C3C46;
-  background: #BF3730 ;
+  /* background: #BF3730 ; */
+  background: linear-gradient(141deg,#9fb8ad 0%,#1fc8db 51%,#2cb5e8 75%);
   color: whitesmoke;
   font-size: 16px;
   margin: 20px auto;
   text-align: center;
+  border-radius: 20px;
   box-shadow: 10px 10px 5px #888888;
   padding-top:35px ;
 }
 
-.tab2{
-  margin-bottom:25px
-}
-.tab2 li {
-  margin-left: 100px;
-}
-.tab2 .tupian {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  float: left;
-  margin-left: 30px;
-}
-
 .tab2 p {
   font-size: 12px;
-  width: 265px;
   text-align: center
 }
 
@@ -259,33 +134,51 @@
   font-size: 13px;
   overflow: hidden;
 }
+/* 附近 */
+.nearby-dl{
+  /* background: linear-gradient(120deg,#AFB919 0%,#1FCD28 51%,#2CF5E5 75%); */
+  box-shadow: 10px 10px 5px #888888;
+  border-radius:50px;
+  overflow: hidden;
+}
 .nearby-dl dt img{
   float: left;
-  margin-left:20px ;
+  margin-left:10px ;
   width: 46px;
-  height: 46px;
   border-radius: 50%;
 }
 .nearby-dl dd p{
   font-size: 14px;
 }
 .nearby-dl dd p b{
-  margin-right:90px 
+  margin-right:90px
 }
 </style>
 <script>
 import axios from 'axios';//引入axiso组件
-// import { getBannerImgs,getNewMusic } from "../../services/API";
 export default {
   data(){
     return{
       list:[],
       lbtimages: [],
       links:[],
+      mv:[],
+      site:[],
 
     };
   },
+  methods: {
+    bfmv(res){
+      this.$router.push({
+        name:"mv",
+        query:{
+          id:res
+        }
+      })
+    }
+  },
   created() {
+    //--------------------http://net-music.penkuoer.com-------------------
     //组件创建成功后执行
     axios.get('http://net-music.penkuoer.com/top/playlist?limit=5&order=new').then(res =>{
       // console.log(res);
@@ -301,7 +194,20 @@ export default {
       //console.log(res.data.playlists)
       // lick文字
       this.links = res.data.playlists
+    }),
+    axios.get('http://net-music.penkuoer.com/mv/all').then(res =>{
+      //console.log(res.data.data[0].id)
+      //mv数据
+      this.mv = res.data.data
+    }),
+    axios.get('http://net-music.penkuoer.com/top/playlist?limit=20&order=new').then(res=>{
+      //console.log(res.data.playlists)
+      //附近
+      this.site = res.data.playlists
     })
-  },
-}
+
+},
+
+  }
+
 </script>

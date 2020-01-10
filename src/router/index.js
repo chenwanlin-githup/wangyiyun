@@ -25,11 +25,15 @@ const routes = [
         name: "friend",
         component: () => import("../views/child/friend.vue")
       },
-
       {
         path: "/account",
         name: "account",
         component: () => import("../views/child/account.vue")
+      },
+      {
+        path: "/mv",
+        name: "mv",
+        component: () => import("../views/child/mv.vue")
       }
     ]
   },
