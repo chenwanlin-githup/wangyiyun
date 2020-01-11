@@ -57,6 +57,7 @@
             </p>
           </dd>
 		      <dd>
+            <p>上次更改：{{sites.updateTime | formatDate}}</p>
             <p>提供者：--{{sites.creator.nickname}}--</p>
           </dd>
     	</dl>
@@ -132,6 +133,7 @@
 </style>
 <script>
 import axios from 'axios';//引入axiso组件
+import { formatDate } from "../../time.js";
 export default {
   data(){
     return{
@@ -142,6 +144,12 @@ export default {
 
     };
   },
+  filters:{
+    formatDate(time){
+        var data = new Date(time);
+        return formatDate(data,'yyyy-MM-dd');
+    }
+   },
   methods: {
     bfmv(res){
       this.$router.push({
@@ -152,7 +160,7 @@ export default {
       })
     },
     fjdt(res){
-      console.log(res)
+      //console.log(res)
       this.$router.push({
         name:"dynamic",
         query:{
@@ -179,9 +187,9 @@ export default {
       //mv数据
       this.mv = res.data.data
     }),
-    axios.get('http://net-music.penkuoer.com/top/playlist?limit=5&order=hot').then(res=>{
+    axios.get('http://net-music.penkuoer.com/top/playlist?limit=8&order=hot').then(res=>{
       //console.log(res.data.playlists[0].id)
-      //附近
+      //附近动态
       this.site = res.data.playlists
     })
 

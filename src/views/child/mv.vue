@@ -23,9 +23,9 @@
         {{singertitle.desc}}
       </p>
     </div>
-    <p>{{singertitle.artistName}}相关的MV</p>
+    <p>与{{singertitle.artistName}}相关</p>
     <div class="xgmvcss">
-      <van-grid :column-num="2" icon-size="170px">
+      <van-grid :column-num="2" icon-size="170px" :dot="true" :border="false" >
         <van-grid-item
           v-for="(xgmv,index) in xgMV"
           :key="index"
