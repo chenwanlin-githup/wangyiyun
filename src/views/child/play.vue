@@ -1,7 +1,7 @@
 <template>
   <div>
-    <van-nav-bar title="陈奕迅" >
-      <van-icon name="arrow-left" slot="left"  @click="toFrom()" />
+    <van-nav-bar title="陈奕迅">
+      <van-icon name="arrow-left" slot="left" @click="toFrom()" />
     </van-nav-bar>
     <div class="circle"></div>
     <p>这里是歌词这里是歌词</p>
@@ -23,8 +23,9 @@
 export default {
   methods: {
     toFrom(res) {
+      console.log(0);
       this.$router.push({
-        name: "friend"
+        name: this.$route.query.url
       });
     }
   }

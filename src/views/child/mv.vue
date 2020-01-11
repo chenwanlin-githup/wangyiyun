@@ -15,17 +15,18 @@
     ></video>
     <div style="font-size:15px">
       <p>
-        <b>简介: {{singertitle.name}}</b>
+        <b>【MV简介: {{singertitle.name}}】</b>
         {{singertitle.briefDesc}}
       </p>
-      <p>
-        <b>描述:</b>
+      {{singertitle.publishTime}}
+      <p v-if="singertitle.desc != null && singertitle.desc !=''">
+        <b>【描述】:</b>
         {{singertitle.desc}}
       </p>
     </div>
-    <p>{{singertitle.artistName}}相关的MV</p>
+    <p>【{{singertitle.artistName}}】的相关</p>
     <div class="xgmvcss">
-      <van-grid :column-num="2" icon-size="170px">
+      <van-grid :column-num="2" icon-size="170px" :dot="true" :border="false">
         <van-grid-item
           v-for="(xgmv,index) in xgMV"
           :key="index"
