@@ -71,6 +71,11 @@ const routes = [
     path: "/loginName",
     name: "loginName",
     component: () => import("../views/loginName.vue")
+  },
+  {
+    path: "/playMusic",
+    name: "playMusic",
+    component: () => import("../views/playMusic/playMusic.vue")
   }
 ];
 
