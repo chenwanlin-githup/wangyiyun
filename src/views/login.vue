@@ -19,6 +19,8 @@
     <div class="login-zhuce">
       <van-button round color="red" plain block :to="{name:'loginRegister'}">注册</van-button>
     </div>
+
+    <van-button size="small" plain round color="red" :to="{name:'find'}">游客登录</van-button>
     <div class="login-other">其它登录方式</div>
     <ul class="login-other-img">
       <li>
