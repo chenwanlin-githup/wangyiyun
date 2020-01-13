@@ -26,12 +26,6 @@ export default {
       console.log(0);
       this.$router.push({
         name: this.$route.query.url
-        // name: "friend"
-        // name: "playMusic",
-        // query: {
-        //   url: "play"
-        // }
-
       });
     }
   }

@@ -26,7 +26,7 @@
     </div>
     <p>与{{singertitle.artistName}}相关</p>
     <div class="xgmvcss">
-      <van-grid :column-num="2" icon-size="170px" :dot="true" :border="false" >
+      <van-grid :column-num="2" icon-size="170px" :dot="true" :border="false">
         <van-grid-item
           v-for="(xgmv,index) in xgMV"
           :key="index"
@@ -74,7 +74,7 @@ export default {
         }),
       axios
         .get(
-          "http://net-music.penkuoer.com//mv/detail?mvid=" +
+          "http://net-music.penkuoer.com/mv/detail?mvid=" +
             this.$route.query.id
         )
         .then(res => {

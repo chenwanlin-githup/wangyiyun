@@ -60,6 +60,7 @@ export default {
 .common {
   padding-left: 10px;
 }
+
 .common h4 {
   font-size: 12px;
   font-weight: bold;
@@ -67,19 +68,23 @@ export default {
   text-indent: 10px;
   line-height: 30px;
 }
+
 .allUser {
   display: flex;
 }
+
 .touxiang {
   width: 50px;
   margin-top: 5px;
 }
+
 .touxiang img {
   display: block;
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
+
 .inner {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -89,10 +94,12 @@ export default {
   font-size: 12px;
   border-bottom: double 1px rgba(242, 242, 242, 0.3);
 }
+
 .inner .timer {
   padding: 0px 0px 3px 0px;
   font-size: 8px;
 }
+
 .inner .com {
   line-height: 26px;
   padding: 5px 0px;
