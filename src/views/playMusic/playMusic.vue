@@ -67,12 +67,14 @@
           @timeupdate="updatatime"
           hidden
         ></audio>
-        <div>
+        <div class="jindutiao">
           <van-progress
             :percentage="Number(nums)"
             pivot-text="紫色"
             pivot-color="white"
             color="white"
+            track-color="grey"
+            stroke-width="4px"
           />
         </div>
 
@@ -138,7 +140,7 @@ export default {
       let num = (this.currentTime / this.durationTime) * 100;
       if (num == 100) {
         console.log(1);
-        this.imgs = false;
+        this.imgs = true;
       }
       this.nums = num;
     },
@@ -237,6 +239,7 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 .backgroundImg {
   position: absolute;
@@ -342,6 +345,11 @@ export default {
 .music-btn > li > img {
   width: 20px;
   height: 20px;
+}
+.jindutiao {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
 }
 .Audio {
   opacity: 0.8;

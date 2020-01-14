@@ -23,9 +23,7 @@
 export default {
   methods: {
     toFrom(res) {
-      this.$router.push({
-        name: "friend"
-      });
+      this.$router.go(-1);
     }
   }
 };

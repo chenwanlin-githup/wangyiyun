@@ -9,16 +9,15 @@
         slot="right"
         width="20px"
         height="20px"
-        @click="toPlay()"
       />
     </van-nav-bar>
     <div>
       <ul class="head">
         <li>
-          <img :src="headImg" alt />
+          <img src="../../assets/accountimage/yinle.png" alt />
         </li>
         <li>
-          <p>{{Name}}</p>
+          <p>xxxxxx</p>
           <p class="head-li-lv" style="color:gold;">Lv5</p>
         </li>
         <li class="head-qd-right">签到</li>
@@ -26,15 +25,15 @@
       <ul class="head-buttom">
         <li>
           <p>动态</p>
-          <p>{{eventCount}}</p>
+          <p>1</p>
         </li>
         <li>
           <p>关注</p>
-          <p>{{follows}}</p>
+          <p>2</p>
         </li>
         <li>
           <p>粉丝</p>
-          <p>{{followeds}}</p>
+          <p>3</p>
         </li>
         <li></li>
         <li>
@@ -158,50 +157,18 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "account",
   data() {
     return {
-      yinyue: require("../../assets/accountimage/yinle.png"),
-      headImg: "",
-      Name: "",
-      follows: "",
-      followeds: "",
-      eventCount: ""
+      yinyue: require("../../assets/accountimage/yinle.png")
     };
-  },
-  created() {
-    let id = JSON.parse(localStorage.getItem("token"));
-    axios
-      .get("http://net-music.penkuoer.com/user/detail?uid=" + id)
-      .then(res => {
-        this.headImg = res.data.profile.avatarUrl;
-        this.Name = res.data.profile.nickname;
-        this.follows = res.data.profile.follows;
-        this.followeds = res.data.profile.followeds;
-        this.eventCount = res.data.profile.eventCount;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-  methods: {
-    toPlay() {
-      this.$router.push({
-        name: "playMusic",
-        query: {
-          url: "account"
-        }
-      });
-    }
   }
 };
 </script>
 <style scoped>
 .account {
   padding-bottom: 50px;
-  text-align: center;
 }
 /* head */
 .height {
@@ -234,9 +201,9 @@ export default {
   line-height: 20px;
 }
 .head > li > img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  margin: 10px 10px;
+  width: 50px;
+  height: 50px;
 }
 .head-qd-right {
   margin-top: 10px;
@@ -268,10 +235,10 @@ export default {
   overflow: hidden;
 }
 .nav-xiaoxi-icon {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 2rem;
+  height: 2rem;
   float: left;
-  margin-top: 7px;
+  margin-top: 0.25rem;
 }
 .nav-xiaoxi-zi {
   height: 3rem;

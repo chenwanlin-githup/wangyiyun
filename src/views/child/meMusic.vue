@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <template >
   <!-- {"shhs":1,"shhs":2,"shhs":3,"shhs":4} -->
@@ -14,3 +15,13 @@ export default {
   }
 };
 </script>
+=======
+<template>
+  
+</template>
+
+<style scoped>
+
+</style>
+
+>>>>>>> e5bb89dbeaf40df265912de1a0e8f86ffe2d25b9
