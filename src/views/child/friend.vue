@@ -82,7 +82,7 @@
         </dl>
         <div style="height:50px"></div>
       </van-tab>
-      <van-tab :to="{name:'play',query:{url:'friend'}}">
+      <van-tab :to="{name:'playMusic',query:{url:'friend'}}">
         内容4
         <div slot="title">
           <van-icon name="music" />
