@@ -16,7 +16,7 @@
     </div>
     <div class="pm-message">11111</div>
     <div class="pm-foot">2222</div>
-  </div>
+  </div> 
 </template>
 <script>
 import axios from "axios";
@@ -31,9 +31,7 @@ export default {
   created() {},
   methods: {
     toFrom() {
-      this.$router.push({
-        name: this.$route.query.url
-      });
+      this.$router.go(-1)
     }
   }
 };
