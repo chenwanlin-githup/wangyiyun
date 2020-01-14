@@ -67,7 +67,15 @@
           @timeupdate="updatatime"
           hidden
         ></audio>
-        <van-progress :percentage="75" pivot-text="紫色" pivot-color="white" color="white" />
+        <div>
+          <van-progress
+            :percentage="Number(nums)"
+            pivot-text="紫色"
+            pivot-color="white"
+            color="white"
+          />
+        </div>
+
         <ul class="music-btn">
           <li>123</li>
           <li>
@@ -95,6 +103,8 @@ export default {
       backgroundUrl: "",
       show: true,
       imgs: true,
+      nums: "",
+      timehead: "",
       lrc: {},
       lrcData: {},
       durationTime: 0,
@@ -123,6 +133,14 @@ export default {
     updatatime(e) {
       //console.log(e.target.currentTime);
       this.currentTime = e.target.currentTime;
+      this.timehead = this.currentTime;
+      this.durationTime = e.target.duration;
+      let num = (this.currentTime / this.durationTime) * 100;
+      if (num == 100) {
+        console.log(1);
+        this.imgs = false;
+      }
+      this.nums = num;
     },
     rbf() {
       let audio = document.getElementById("Audio");
@@ -131,11 +149,9 @@ export default {
         //检测播放是否已暂停.audio.paused 在播放器播放时返回false.
 
         if (audio.paused) {
-          console.log(1);
           this.imgs = false;
           audio.play(); //audio.play();// 这个就是播放
         } else {
-          console.log(2);
           this.imgs = true;
 
           audio.pause(); // 这个就是暂停
@@ -192,6 +208,16 @@ export default {
   computed: {
     getAllKey() {
       //console.log(this.lrcData);
+      let audio = document.getElementById("Audio");
+
+      if (audio !== null) {
+        //检测播放是否已暂停.audio.paused 在播放器播放时返回false.
+        if (audio.paused) {
+          this.imgs = true;
+        } else {
+          this.imgs = false;
+        }
+      }
       for (var i = 0; i < this.lrcData.length; i++) {
         //console.log(i);
         for (var j in this.lrcData[i]) {
