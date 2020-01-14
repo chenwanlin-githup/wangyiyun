@@ -31,14 +31,14 @@ const routes = [
         component: () => import("../views/child/account.vue")
       },
       {
-        path: "/mv",
+        path: "/friend/mv",
         name: "mv",
-        component: () => import("../views/child/mv.vue")
+        component: () => import("../views/child/friend/mv.vue")
       },
       {
-        path: "/dynamic",
+        path: "/friend/dynamic",
         name: "dynamic",
-        component: () => import("../views/child/dynamic.vue")
+        component: () => import("../views/child/friend/dynamic.vue")
       }
     ]
   },

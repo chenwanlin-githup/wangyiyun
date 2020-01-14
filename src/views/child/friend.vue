@@ -1,6 +1,6 @@
 <template>
   <div id="friend">
-    <van-tabs sticky route animated color="#90ee90">
+    <van-tabs sticky route replace animated color="#90ee90">
       <van-tab>
         <!-- 轮播图 -->
         <van-swipe :autoplay="3000" indicator-color="white">
@@ -18,22 +18,22 @@
           </van-swipe>
         </div>
         <!-- lick图情感屏幕 -->
-        <div class="link" v-for="(i,index) in links" :key="index">
-          {{i.name}}
-          <p>
-            <b>
-              <i>{{i.subscribedCount}}</i>人
-            </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <van-button
-              icon="good-job"
-              type="primary"
-              text="点赞"
-              size="mini"
-              click
-              color="#000"
-              plain
-            />
-          </p>
+        <div class="link" v-for="(i,index) in links" :key="index" :style="{background: 'url( '+ i.coverImgUrl +')'}">
+            {{i.name}}
+            <p>
+              <b>
+                <i>{{i.subscribedCount}}</i>人
+              </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <van-button
+                icon="good-job"
+                type="primary"
+                text="点赞"
+                size="mini"
+                click
+                color="#000"
+                plain
+              />
+            </p>
         </div>
         <div slot="title">
           <van-icon name="hot-o" />
@@ -61,6 +61,7 @@
           </li>
           <hr />
         </ul>
+        <div style="height:50px"></div>
       </van-tab>
       <van-tab title="附近动态">
         <dl class="nearby-dl" v-for="(sites) in site" :key="sites.id" @click="fjdt(sites.id)">
@@ -79,6 +80,7 @@
             <p>提供者：--{{sites.creator.nickname}}--</p>
           </dd>
         </dl>
+        <div style="height:50px"></div>
       </van-tab>
       <van-tab :to="{name:'play',query:{url:'friend'}}">
         内容4
@@ -89,6 +91,78 @@
     </van-tabs>
   </div>
 </template>
+
+<script>
+import axios from "axios"; //引入axiso组件
+import { formatDate } from "../../time.js";
+
+export default {
+  data() {
+    return {
+      lbtimages: [],
+      links: [],
+      mv: [],
+      site: []
+    };
+  },
+  filters: {
+    formatDate(time) {
+      var data = new Date(time);
+      return formatDate(data, "yyyy-MM-dd");
+    }
+  },
+  methods: {
+    bfmv(res) {
+      this.$router.push({
+        name: "mv",
+        query: {
+          id: res
+        }
+      });
+    },
+    fjdt(res) {
+      //console.log(res)
+      this.$router.push({
+        name: "dynamic",
+        query: {
+          id: res
+        }
+      });
+    }
+  },
+
+  created() {
+    //--------------------http://net-music.penkuoer.com-------------------
+    //}),
+    axios.get("http://net-music.penkuoer.com/banner?type=1").then(res => {
+      //console.log(res.data.banners)
+      // 轮播图
+      this.lbtimages = res.data.banners;
+    }),
+      axios
+        .get("http://net-music.penkuoer.com/top/playlist/catlist")
+        .then(res => {
+          //console.log(res.data.playlists)
+          // lick文字
+          this.links = res.data.playlists;
+        }),
+      axios.get("http://net-music.penkuoer.com/mv/all").then(res => {
+        //http://net-music.penkuoer.com/mv/all?area=内地
+        //console.log(res.data.data[0].id)
+        //mv数据
+        this.mv = res.data.data;
+      }),
+      axios
+        .get("http://net-music.penkuoer.com/top/playlist?limit=20&order=hot")
+        .then(res => {
+          //console.log(res.data.playlists[0].id)
+          //附近动态
+          this.site = res.data.playlists;
+        });
+  }
+};
+</script>
+
 <style scoped>
 .topics h4 {
   text-indent: -200px;
@@ -96,9 +170,8 @@
 
 .link {
   width: 90%;
-  height: 100px;
+  height: 150px;
   border: 5px solid #3c3c46;
-  /* background: #BF3730 ; */
   background: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   color: whitesmoke;
   font-size: 16px;
@@ -159,71 +232,3 @@
   margin-right: 90px;
 }
 </style>
-<script>
-import axios from "axios"; //引入axiso组件
-import { formatDate } from "../../time.js";
-export default {
-  data() {
-    return {
-      lbtimages: [],
-      links: [],
-      mv: [],
-      site: [],
-    };
-  },
-  filters: {
-    formatDate(time) {
-      var data = new Date(time);
-      return formatDate(data, "yyyy-MM-dd");
-    }
-  },
-  methods: {
-    bfmv(res) {
-      this.$router.push({
-        name: "mv",
-        query: {
-          id: res
-        }
-      });
-    },
-    fjdt(res) {
-      //console.log(res)
-      this.$router.push({
-        name: "dynamic",
-        query: {
-          id: res
-        }
-      });
-    }
-  },
-
-  created() {
-    //--------------------http://net-music.penkuoer.com-------------------
-    //}),
-    axios.get("http://net-music.penkuoer.com/banner?type=1").then(res => {
-      //console.log(res.data.banners)
-      // 轮播图
-      this.lbtimages = res.data.banners;
-    }),
-      axios
-        .get("http://net-music.penkuoer.com/top/playlist/catlist")
-        .then(res => {
-          //console.log(res.data.playlists)
-          // lick文字
-          this.links = res.data.playlists;
-        }),
-      axios.get("http://net-music.penkuoer.com/mv/all?area=内地").then(res => {
-        //console.log(res.data.data[0].id)
-        //mv数据
-        this.mv = res.data.data;
-      }),
-      axios
-        .get("http://net-music.penkuoer.com/top/playlist?limit=8&order=hot")
-        .then(res => {
-          //console.log(res.data.playlists[0].id)
-          //附近动态
-          this.site = res.data.playlists;
-        });
-  }
-};
-</script>
