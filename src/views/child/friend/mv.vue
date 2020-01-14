@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top:46px">
+  <div style="margin-top:46px;">
     <van-nav-bar left-text="返回" :title="singertitle.artistName" left-arrow fixed>
       <van-icon name="arrow-left" slot="left" @click="toFrom()" />
     </van-nav-bar>
@@ -13,7 +13,7 @@
       poster
       ref="viddeo"
     ></video>
-    <div style="font-size:15px">
+    <div style="font-size:15px;">
       <p>
         <b>【MV简介: {{singertitle.name}}】</b>
         {{singertitle.briefDesc}}
@@ -76,6 +76,8 @@ export default {
     };
   },
   created() {
+    var id = localStorage.getItem('token')
+      console.log(id)
     axios
       .get("http://net-music.penkuoer.com/mv/url?id=" + this.$route.query.id)
       .then(res => {

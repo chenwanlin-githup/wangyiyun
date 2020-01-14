@@ -3,7 +3,7 @@
     <div>
       <router-view></router-view>
     </div>
-    <van-tabbar route>
+    <van-tabbar route swipeable>
       <van-tabbar-item icon="home-o" :to="{ name: 'find' }"
         >发现音乐</van-tabbar-item
       >
