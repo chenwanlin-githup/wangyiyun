@@ -23,7 +23,7 @@
 		name:"tinggeshiqu",
 		methods:{
 			toPlayMusic(){
-				this.$router.push({name:"play"})
+				this.$router.push({name:"playMusic"})
 			},
 			fanhui(){
 				this.$router.push({name:"find"})
