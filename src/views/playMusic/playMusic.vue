@@ -54,7 +54,7 @@
               <van-icon name="down" />
             </li>
             <li>
-              <van-icon name="chat-o" />
+              <van-icon name="chat-o" @click="toPinglun()" />
             </li>
             <li>
               <van-icon name="ellipsis" />
@@ -157,6 +157,8 @@ export default {
   },
 
   mounted() {
+    this.imgs = false;
+
     if (this.$route.query.id) {
       this.idM = this.$route.query.id;
     }
@@ -192,13 +194,19 @@ export default {
       .get("http://net-music.penkuoer.com//top/list?idx=" + this.idmNav)
       .then(res => {
         this.data = res.data.playlist.tracks;
-        console.log(this.data);
+        //console.log(this.data);
       })
       .catch(err => {
         console.log(err);
       });
   },
   methods: {
+    toPinglun() {
+      this.$router.push({
+        name: "pinglun",
+        query: { id: this.idM, url: "playMusic" }
+      });
+    },
     toFrom() {
       this.$router.go(-1);
     },
@@ -241,13 +249,15 @@ export default {
       this.showTan = true;
     },
     playMusic(geming, geshou, gequId, gepicUrl) {
+      this.imgs = false;
       this.gequ = [geming, geshou, gequId];
       //console.log(this.gequ);
+      this.idM = gequId;
       this.backgroundUrl = gepicUrl;
       axios
         .get("http://net-music.penkuoer.com/song/url?id=" + this.gequ[2])
         .then(res => {
-          console.log(res);
+          //console.log(res);
           this.srcMp3 = res.data.data[0].url;
           //sconsole.log(this.srcMp3);
         })

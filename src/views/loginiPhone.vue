@@ -61,6 +61,9 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  text-align: center;
+}
 .iphone-input {
   margin-top: 20px;
 }

@@ -132,6 +132,11 @@ const routes = [
     path: "/paihangbang",
     name: "paihangbang",
     component: () => import("../views/DFH/paihangbang.vue")
+  },
+  {
+    path: "/pinglun",
+    name: "pinglun",
+    component: () => import("../views/pinglun/pinglun.vue")
   }
 ];
 
