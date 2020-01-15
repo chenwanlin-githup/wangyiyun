@@ -14,11 +14,7 @@
       </van-nav-bar>
     </div>
 
-<<<<<<< HEAD
-    <div>
-=======
     <!-- <div>
->>>>>>> 9825c7ccd4bac8b373555df6dd1863509c931df0
       <div class="ben">
         <div class="nav-xiaoxi">
           <div class="nav-xiaoxi-icon">
@@ -92,45 +88,9 @@
             <p class="cang-p1">入耳便喜欢上的英文歌</p>
             <p class="cang-p2">86首，by 不来不去，已下载1首</p>
           </div>
-<<<<<<< HEAD
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-        </div>
-      </div>
-    </div>
-=======
         </div>
       </div>
     </div>-->
->>>>>>> 9825c7ccd4bac8b373555df6dd1863509c931df0
   </div>
 </template>
 <style scoped>
@@ -272,31 +232,6 @@ export default {
       this.$router.push({
         name: "play"
       });
-<<<<<<< HEAD
-    },
-    yiao() {
-      this.$router.push({
-        name: "gedan"
-      });
-    },
-
-    showHide() {
-      var obj = document.getElementById("div1");
-      if (obj.style.display == "none") {
-        obj.style.display = "block";
-      } else {
-        obj.style.display = "none";
-      }
-    },
-    yinc() {
-      var obj = document.getElementById("cang-div");
-
-      if (obj.style.display == "none") {
-        obj.style.display = "block";
-      } else {
-        obj.style.display = "none";
-      }
-=======
     },
     // yiao() {
     //   this.$router.push({
@@ -321,19 +256,17 @@ export default {
     // },
     data() {
       return {
-        Data: [],
+        Data: []
       };
     },
     created() {
-
       axios
-        .get("http://net-music.penkuoer.com/user/playlist?uid=" + 490163516)//this.$route.query.id
+        .get("http://net-music.penkuoer.com/user/playlist?uid=" + 490163516) //this.$route.query.id
         .then(res => {
           console.log(res.data);
           // 取数据
           this.Data = res.data;
         });
->>>>>>> 9825c7ccd4bac8b373555df6dd1863509c931df0
     }
   }
 };
