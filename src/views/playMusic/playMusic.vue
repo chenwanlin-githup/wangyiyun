@@ -8,8 +8,8 @@
             <van-icon name="arrow-left" @click="toFrom" />
           </li>
           <li>
-            <p>晴天</p>
-            <p>周杰伦</p>
+            <p>{{gequ[0]}}</p>
+            <p>{{gequ[1]}}</p>
           </li>
           <li>
             <van-icon name="share" />
@@ -23,8 +23,8 @@
             <p
               class="lrc-p"
               v-show="
-                Number(currentTime) >= keyArr[index] &&
-                  Number(currentTime) < keyArr[index + 1]
+                Number(timehead) >= keyArr[index] &&
+                  Number(timehead) < keyArr[index + 1]
               "
               v-for="(item, index) in lrcData"
               :key="index"
@@ -59,27 +59,22 @@
         </div>
       </div>
       <div class="pm-foot">
-        <audio
-          id="Audio"
-          src="http://m7.music.126.net/20200113165358/eb031580686a9118b142b81891b905fe/ymusic/0759/030f/540b/039ace5c004ebd382de4ca163145cf9b.mp3"
-          autoplay
-          controls
-          @timeupdate="updatatime"
-          hidden
-        ></audio>
+        <audio id="Audio" :src="srcMp3" autoplay controls @timeupdate="updatatime" hidden></audio>
         <div class="jindutiao">
           <van-progress
-            :percentage="Number(nums)"
+            :percentage="ppp"
             pivot-text="紫色"
             pivot-color="white"
-            color="white"
+            color="blue"
             track-color="grey"
             stroke-width="4px"
           />
         </div>
 
         <ul class="music-btn">
-          <li>123</li>
+          <li :style="{color:'white'}">
+            <van-icon name="replay" />
+          </li>
           <li>
             <img src="../../assets/accountimage/playMusic/shangyishou.png" alt />
           </li>
@@ -90,7 +85,44 @@
           <li>
             <img src="../../assets/accountimage/playMusic/xiayishou.png" alt />
           </li>
-          <li>456</li>
+          <li class="liebiao-icon">
+            <img src="../../assets/accountimage/playMusic/liebiao.png" alt />
+            <van-cell
+              class="liebiao-zujian"
+              @click="showPopup"
+              :style="{ height: '100%',width:'100%' ,}"
+            ></van-cell>
+
+            <van-popup
+              v-model="showTan"
+              position="bottom"
+              :style="{ height: '50%',width:'100%' ,  opacity: '1'}"
+            >
+              <ul class="liebiao-zujian-message-nav">
+                <li>列表循环&nbsp;{{data.length}}</li>
+                <li>收藏</li>
+                <li>清空</li>
+              </ul>
+              <ul>
+                <li
+                  class="liebiao-zujian-message-music"
+                  v-for="(item,index) in data"
+                  :key="index"
+                  @click="playMusic(item.name,item.ar[0].name,item.id)"
+                >
+                  <p class="liebiao-zujian-message-music-index">{{index+1}}</p>
+                  <div class="liebiao-zujian-message-music-name">
+                    <p>{{item.name}}</p>
+                    <p>{{item.ar[0].name}}</p>
+                  </div>
+
+                  <p>
+                    <van-icon name="delete" />
+                  </p>
+                </li>
+              </ul>
+            </van-popup>
+          </li>
         </ul>
       </div>
     </div>
@@ -102,25 +134,49 @@ export default {
   name: "playMusic",
   data() {
     return {
+      showTan: false,
       backgroundUrl: "",
       show: true,
       imgs: true,
-      nums: "",
+      ppp: 0,
       timehead: "",
       lrc: {},
       lrcData: {},
       durationTime: 0,
       currentTime: 0,
-      keyArr: []
+      keyArr: [],
+      data: "",
+      gequ: [],
+      srcMp3: "",
+      idM: 347230
     };
   },
 
-  created() {
+  mounted() {
+    if (this.$route.query.id) {
+      this.idM = this.$route.query.id;
+    }
     axios
-      .get("http://net-music.penkuoer.com//top/list?idx=1")
+      .get("http://net-music.penkuoer.com/song/url?id=" + this.idM)
       .then(res => {
-        //console.log(res.data.playlist.tracks[0].al.picUrl);
-        this.backgroundUrl = res.data.playlist.tracks[0].al.picUrl;
+        //console.log(res);
+        this.srcMp3 = res.data.data[0].url;
+        //sconsole.log(this.srcMp3);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    axios
+      .get("http://net-music.penkuoer.com//song/detail?ids=" + this.idM)
+      .then(res => {
+        this.backgroundUrl = res.data.songs[0].al.picUrl;
+        this.gequ = [
+          res.data.songs[0].name,
+          res.data.songs[0].ar[0].name,
+          this.idM
+        ];
+        //this.data = res.data.playlist.tracks;
+        //console.log(this.data);
       })
       .catch(err => {
         console.log(err);
@@ -128,19 +184,26 @@ export default {
   },
   methods: {
     toFrom() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
     updatatime(e) {
       //console.log(e.target.currentTime);
       this.currentTime = e.target.currentTime;
       this.timehead = this.currentTime;
       this.durationTime = e.target.duration;
-      let num = (this.currentTime / this.durationTime) * 100;
-      if (num == 100) {
-        console.log(1);
-        this.imgs = true;
-      }
-      this.nums = num;
+      //console.log(this.currentTime);
+
+      try {
+        let num = parseInt((this.currentTime / this.durationTime) * 100);
+
+        if (num == 100) {
+          //console.log(1);
+          this.imgs = true;
+        }
+        if (!isNaN(num)) {
+          this.ppp = num;
+        }
+      } catch (err) {}
     },
     rbf() {
       let audio = document.getElementById("Audio");
@@ -157,67 +220,77 @@ export default {
           audio.pause(); // 这个就是暂停
         }
       }
+    },
+    showPopup() {
+      this.showTan = true;
+    },
+    playMusic(geming, geshou, gequId) {
+      this.gequ = [geming, geshou, gequId];
+      //console.log(this.gequ);
+      axios
+        .get("http://net-music.penkuoer.com/song/url?id=" + this.gequ[2])
+        .then(res => {
+          console.log(res);
+          this.srcMp3 = res.data.data[0].url;
+          //sconsole.log(this.srcMp3);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
-  mounted() {
-    axios
-      .get("http://net-music.penkuoer.com//lyric?id=1413142894")
-      .then(res => {
-        this.lrc = res.data;
-        // 歌词数据格式处理
-        var lyrics = res.data.lrc.lyric.split("\n");
-        // console.log(lyrics);
+  watch: {
+    gequ(a, b) {
+      axios
+        .get("http://net-music.penkuoer.com//lyric?id=" + a[2])
+        .then(res => {
+          this.lrc = res.data;
+          // 歌词数据格式处理
+          var lyrics = res.data.lrc.lyric.split("\n");
+          // console.log(lyrics);
 
-        var lrcObj = [];
-        for (var i = 0; i < lyrics.length; i++) {
-          //decodeURIComponent() 函数可对 encodeURIComponent() 函数编码的 URI 进行解码。
-          var lyric = decodeURIComponent(lyrics[i]);
-          //console.log(lyric);
-          //获取每句歌词之前的时间段
-          var timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
-          var timeRegExpArr = lyric.match(timeReg);
-          //console.log(timeRegExpArr);
-          //timeRegExpArr不存在，因为continue跳过了，直接进入下一个迭代
-          if (!timeRegExpArr) continue;
-          //去掉每句歌词前的时间段
-          var clause = lyric.replace(timeReg, "");
-          //console.log(clause);
-          //把时间段转化成秒数
-          for (var k = 0, h = timeRegExpArr.length; k < h; k++) {
-            var t = timeRegExpArr[k];
-            //console.log(t);
-            var min = Number(String(t.match(/\[\d*/i)).slice(1)),
-              sec = Number(String(t.match(/\:\d*\.\d*/i)).slice(1));
-            //console.log(String(t.match(/\:\d*\.\d*/i)));
-            var time = min * 60 + sec;
-            //console.log(time);
-            //把歌词以{time：clouse}形式存入lrcObj中
-            var arr = {};
-            arr[time] = clause;
-            lrcObj.push(arr);
+          var lrcObj = [];
+          for (var i = 0; i < lyrics.length; i++) {
+            //decodeURIComponent() 函数可对 encodeURIComponent() 函数编码的 URI 进行解码。
+            var lyric = decodeURIComponent(lyrics[i]);
+            //console.log(lyric);
+            //获取每句歌词之前的时间段
+            var timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
+            var timeRegExpArr = lyric.match(timeReg);
+            //console.log(timeRegExpArr);
+            //timeRegExpArr不存在，因为continue跳过了，直接进入下一个迭代
+            if (!timeRegExpArr) continue;
+            //去掉每句歌词前的时间段
+            var clause = lyric.replace(timeReg, "");
+            //console.log(clause);
+            //把时间段转化成秒数
+            for (var k = 0, h = timeRegExpArr.length; k < h; k++) {
+              var t = timeRegExpArr[k];
+              //console.log(t);
+              var min = Number(String(t.match(/\[\d*/i)).slice(1)),
+                sec = Number(String(t.match(/\:\d*\.\d*/i)).slice(1));
+              //console.log(String(t.match(/\:\d*\.\d*/i)));
+              var time = min * 60 + sec;
+              //console.log(time);
+              //把歌词以{time：clouse}形式存入lrcObj中
+              var arr = {};
+              arr[time] = clause;
+              lrcObj.push(arr);
+            }
           }
-        }
-        //console.log(lrcObj);
-        this.lrcData = lrcObj;
-        //console.log(this.lrcData);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+          //console.log(lrcObj);
+          this.lrcData = lrcObj;
+          //console.log(this.lrcData);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   },
   computed: {
     getAllKey() {
       //console.log(this.lrcData);
-      let audio = document.getElementById("Audio");
 
-      if (audio !== null) {
-        //检测播放是否已暂停.audio.paused 在播放器播放时返回false.
-        if (audio.paused) {
-          this.imgs = true;
-        } else {
-          this.imgs = false;
-        }
-      }
       for (var i = 0; i < this.lrcData.length; i++) {
         //console.log(i);
         for (var j in this.lrcData[i]) {
@@ -227,11 +300,14 @@ export default {
       }
       //console.log(this.keyArr);
     }
-  },
-  updated() {}
+  }
 };
 </script>
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 .kuang {
   height: 100%;
   width: 100%;
@@ -281,6 +357,9 @@ export default {
   padding-top: 30px;
   padding-right: 20px;
   font-size: 25px;
+}
+.pm-head > ul > li:nth-child(2) > p {
+  padding: 10px 0;
 }
 /* message 歌词部分*/
 .pm-message {
@@ -338,7 +417,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.6;
+  opacity: 0.9;
 }
 .music-btn > li > img {
   width: 20px;
@@ -349,7 +428,42 @@ export default {
   margin: 0 auto;
   overflow: hidden;
 }
-.Audio {
-  opacity: 0.8;
+
+.liebiao-icon {
+  position: relative;
+  opacity: 1;
+}
+.liebiao-icon > img {
+  position: absolute;
+}
+.liebiao-icon > .liebiao-zujian {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+.liebiao-zujian-message-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.liebiao-zujian-message-nav > li {
+  width: 30%;
+  text-align: center;
+}
+.liebiao-zujian-message-music {
+  height: 60px;
+  width: 100%;
+  display: flex;
+}
+.liebiao-zujian-message-music-index {
+  width: 15%;
+  line-height: 36px;
+}
+.liebiao-zujian-message-music-name {
+  width: 75%;
+  text-align: left;
+}
+.liebiao-zujian-message-music-name > p:nth-child(2) {
+  color: gray;
+  font-size: 12px;
 }
 </style>

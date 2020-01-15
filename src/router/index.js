@@ -136,8 +136,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
-	routes //配置路由规则的
-	//linkActiveClass: 'vant-active', //覆盖默认路由高亮的类
+  routes //配置路由规则的
+  //linkActiveClass: 'vant-active', //覆盖默认路由高亮的类
 });
 
 export default router;
