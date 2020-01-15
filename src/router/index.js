@@ -62,6 +62,11 @@ const routes = [
         path: "/friend/dynamic",
         name: "dynamic",
         component: () => import("../views/child/friend/dynamic.vue")
+      },
+      {
+        path: "/friend/LBT-song",
+        name: "LBT-song",
+        component: () => import("../views/child/friend/LBT-song.vue")
       }
     ]
   },

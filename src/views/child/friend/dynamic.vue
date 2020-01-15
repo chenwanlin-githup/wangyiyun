@@ -4,13 +4,16 @@
       <van-icon name="arrow-left" slot="left" @click="toFrom()" />
     </van-nav-bar>
     <div class="common">
-      <h3>当前评论:  &nbsp;&nbsp;&nbsp;{{gdplNumber}}条</h3>
+      <h3>当前评论: &nbsp;&nbsp;&nbsp;{{gdplNumber}}条</h3>
       <div class="allUser" v-for="(item,i) in gdpl" :key="i">
         <div class="touxiang">
           <img :src="item.user.avatarUrl" alt srcset />
         </div>
         <div class="inner">
-          <p class="userName">{{item.user.nickname}}<b class="timer">【{{item.time | formatDate}}】</b></p>
+          <p class="userName">
+            {{item.user.nickname}}
+            <b class="timer">【{{item.time | formatDate}}】</b>
+          </p>
           <p class="com">{{item.content}}</p>
         </div>
       </div>
@@ -23,10 +26,8 @@ import axios from "axios";
 import { formatDate } from "../../../time";
 export default {
   methods: {
-    toFrom(res) {
-      this.$router.push({
-        name: "friend"
-      });
+    toFrom() {
+      this.$router.go(-1);
     }
   },
   filters: {
@@ -38,7 +39,7 @@ export default {
   data() {
     return {
       gdpl: [],
-      gdplNumber:''
+      gdplNumber: ""
     };
   },
   created() {
@@ -56,13 +57,13 @@ export default {
       }),
       axios
         .get(
-        "http://net-music.penkuoer.com/comment/playlist?id=" +
-          this.$route.query.id
-      )
-      .then(res => {
-        console.log(res.data.total);
-        // 歌单评论条数
-        this.gdplNumber = res.data.total;
+          "http://net-music.penkuoer.com/comment/playlist?id=" +
+            this.$route.query.id
+        )
+        .then(res => {
+          console.log(res.data.total);
+          // 歌单评论条数
+          this.gdplNumber = res.data.total;
         });
   }
 };
