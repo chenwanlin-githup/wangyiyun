@@ -28,9 +28,7 @@
 		},
 		methods: {
 			toFrom() {
-				this.$router.push({
-					name: "play"
-				});
+				this.$router.push({name: "play"});
 			}
 		}
 	};
