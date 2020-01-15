@@ -128,9 +128,7 @@ export default {
   },
   methods: {
     toFrom() {
-      this.$router.push({
-        name: this.$route.query.url
-      });
+      this.$router.go(-1)
     },
     updatatime(e) {
       //console.log(e.target.currentTime);

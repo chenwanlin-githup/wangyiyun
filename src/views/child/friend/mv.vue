@@ -55,10 +55,8 @@ import axios from "axios";
 import { formatDate } from "../../../time.js";
 export default {
   methods: {
-    toFrom(res) {
-      this.$router.push({
-        name: "friend"
-      });
+    toFrom() {
+      this.$router.go(-1)
     }
   },
   filters: {
