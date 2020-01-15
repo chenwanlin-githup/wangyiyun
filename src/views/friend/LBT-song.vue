@@ -1,22 +1,22 @@
 <template>
-  <div class="box" style="margin-top:46px;">
+  <div class="box" style="padding-top:46px;">
     <van-nav-bar left-text="返回" :title="gequ" left-arrow fixed>
       <van-icon name="arrow-left" slot="left" @click="toFrom()" />
     </van-nav-bar>
     <div v-for="(item,index) in gqxq" :key="index">
       <img :src="item.al.picUrl" alt width="100%" />
       <b>介绍：{{item.alia}}</b>
-        <video
-          id="myVideo"
-          :src="mp3"
-          controls="controls"
-          autoplay="true"
-          preload="auto"
-          width="100%"
-          poster
-          ref="viddeo"
-        ></video>
-        <p>{{lyric}}</p>
+      <video
+        id="myVideo"
+        :src="mp3"
+        controls="controls"
+        autoplay="true"
+        preload="auto"
+        width="100%"
+        poster
+        ref="viddeo"
+      ></video>
+      <!-- <p>{{lyric}}</p> -->
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
       gqxq: "",
       gequ: "",
       mp3: "",
-      lyric:''
+      lyric: ""
     };
   },
   created() {
@@ -67,9 +67,7 @@ export default {
           this.mp3 = res.data.data[0].url;
         }),
       axios
-        .get(
-          "http://net-music.penkuoer.com/lyric?id=" + this.$route.query.id
-        )
+        .get("http://net-music.penkuoer.com/lyric?id=" + this.$route.query.id)
         .then(res => {
           console.log(res.data.lrc.lyric);
           // 获取mp3歌词

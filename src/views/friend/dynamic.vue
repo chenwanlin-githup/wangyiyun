@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top:46px">
+  <div style="padding-top:5px">
     <van-nav-bar title="歌单评论" fixed>
       <van-icon name="arrow-left" slot="left" @click="toFrom()" />
     </van-nav-bar>
@@ -23,7 +23,7 @@
 </template>
 <script>
 import axios from "axios";
-import { formatDate } from "../../../time";
+import { formatDate } from "../../time";
 export default {
   methods: {
     toFrom() {

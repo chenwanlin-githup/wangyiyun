@@ -52,21 +52,6 @@ const routes = [
         path: "/account",
         name: "account",
         component: () => import("../views/child/account.vue")
-      },
-      {
-        path: "/friend/mv",
-        name: "mv",
-        component: () => import("../views/child/friend/mv.vue")
-      },
-      {
-        path: "/friend/dynamic",
-        name: "dynamic",
-        component: () => import("../views/child/friend/dynamic.vue")
-      },
-      {
-        path: "/friend/LBT-song",
-        name: "LBT-song",
-        component: () => import("../views/child/friend/LBT-song.vue")
       }
     ]
   },
@@ -99,6 +84,21 @@ const routes = [
     path: "/playMusic",
     name: "playMusic",
     component: () => import("../views/playMusic/playMusic.vue")
+  },
+  {
+    path: "/friend/mv",
+    name: "mv",
+    component: () => import("../views/friend/mv.vue")
+  },
+  {
+    path: "/friend/dynamic",
+    name: "dynamic",
+    component: () => import("../views/friend/dynamic.vue")
+  },
+  {
+    path: "/friend/LBT-song",
+    name: "LBT-song",
+    component: () => import("../views/friend/LBT-song.vue")
   },
   {
     path: "/search",
