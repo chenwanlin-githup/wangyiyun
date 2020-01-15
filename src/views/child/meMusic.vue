@@ -13,124 +13,6 @@
         />
       </van-nav-bar>
     </div>
-
-<<<<<<< HEAD
-    <div>
-=======
-    <!-- <div>
->>>>>>> 9825c7ccd4bac8b373555df6dd1863509c931df0
-      <div class="ben">
-        <div class="nav-xiaoxi">
-          <div class="nav-xiaoxi-icon">
-            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/bendi.png" alt />
-          </div>
-          <div class="nav-xiaoxi-zi">本地音乐</div>
-          <div class="nav-xiaoxi-icon2">
-            <van-icon name="arrow" />
-          </div>
-          <div class="nav-zu">248</div>
-        </div>
-        <div class="nav-xiaoxi">
-          <div class="nav-xiaoxi-icon">
-            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/likee.png" alt />
-          </div>
-          <div class="nav-xiaoxi-zi">最近播放</div>
-          <div class="nav-xiaoxi-icon2">
-            <van-icon name="arrow" />
-          </div>
-
-          <div class="nav-zu">100</div>
-        </div>
-
-        <div class="nav-xiaoxi">
-          <div class="nav-xiaoxi-icon">
-            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/dt.png" alt />
-          </div>
-          <div class="nav-xiaoxi-zi">我的电台</div>
-          <div class="nav-xiaoxi-icon2">
-            <van-icon name="arrow" />
-          </div>
-          <div class="nav-zu">3</div>
-        </div>
-        <div class="nav-xiaoxi">
-          <div class="nav-xiaoxi-icon">
-            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/sc.png" alt />
-          </div>
-          <div class="nav-xiaoxi-zi">收藏</div>
-          <div class="nav-xiaoxi-icon2">
-            <van-icon name="arrow" />
-          </div>
-
-          <div class="nav-zu">0</div>
-        </div>
-
-        <div class="xihuan">
-          <div class="xihuan-chuang" @click="showHide()">我创建的歌单（1）</div>
-        </div>
-
-        <div id="div1">
-          <img class="xihuan-xi" src="../../assets/accountimage/ilike.png" />
-
-          <div class="xihuan-huan" @click="yiao()">
-            <p class="dg">我喜欢的歌</p>
-            <p>7首，已下载4首</p>
-          </div>
-        </div>
-
-        <div class="xihuan-shou">
-          <div class="cang" @click="yinc()">我收藏的歌单(8)</div>
-        </div>
-
-        <div id="cang-div">
-          <div class="cang-xian" @click="yiao()">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-<<<<<<< HEAD
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-          <div class="cang-xian">
-            <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-            <p class="cang-p1">入耳便喜欢上的英文歌</p>
-            <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-          </div>
-        </div>
-      </div>
-    </div>
-=======
-        </div>
-      </div>
-    </div>-->
->>>>>>> 9825c7ccd4bac8b373555df6dd1863509c931df0
   </div>
 </template>
 <style scoped>
@@ -269,10 +151,7 @@ import axios from "axios";
 export default {
   methods: {
     toFrom() {
-      this.$router.push({
-        name: "play"
-      });
-<<<<<<< HEAD
+      this.$router.push({name: "play"});
     },
     yiao() {
       this.$router.push({
@@ -296,7 +175,6 @@ export default {
       } else {
         obj.style.display = "none";
       }
-=======
     },
     // yiao() {
     //   this.$router.push({
@@ -333,7 +211,6 @@ export default {
           // 取数据
           this.Data = res.data;
         });
->>>>>>> 9825c7ccd4bac8b373555df6dd1863509c931df0
     }
   }
 };
