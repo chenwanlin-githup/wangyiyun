@@ -10,7 +10,7 @@
         </van-swipe>
         <!-- topics热门话题 -->
         <div class="topics">
-          <h4>电台</h4>
+          <h4>电台指南</h4>
           <van-swipe :loop="false" :width="200" :show-indicators="false">
             <van-swipe-item v-for="(i,index) in topic" :key="index">
               <img :src="i.user.avatarUrl" style="width:150px"/>
@@ -41,6 +41,8 @@
             />
           </p>
         </div>
+        <div style="height:50px"></div>
+
         <div slot="title">
           <van-icon name="hot-o" />
         </div>
@@ -100,7 +102,7 @@
 
 <script>
 import axios from "axios"; //引入axiso组件
-import { formatDate } from "../../time.js";
+import { formatDate } from "../../time";
 
 export default {
   data() {
@@ -110,7 +112,7 @@ export default {
       mv: [],
       topic: [],
       site: [],
-      active: 0
+      active: 1
     };
   },
   filters: {
@@ -147,7 +149,7 @@ export default {
       });
     },
     LBTsong(res) {
-      console.log(res)
+      //console.log(res)
       this.$router.push({
         name: "LBT-song",
         query: {
@@ -168,7 +170,7 @@ export default {
       axios
         .get("http://net-music.penkuoer.com/comment/dj?id=794062371")
         .then(res => {
-          console.log(res.data.comments);
+          //console.log(res.data.comments);
           //电台接口
           // 热门话题
           this.topic = res.data.comments;
@@ -199,7 +201,7 @@ export default {
 
 <style scoped>
 .topics h4 {
-  margin-left: 2em;
+  margin:0.5em 2em;
 }
 
 .link {
