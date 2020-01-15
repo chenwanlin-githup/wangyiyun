@@ -1,40 +1,48 @@
 <template>
   <div id="friend">
-    <van-tabs sticky route replace swipeable animated color="#90ee90">
+    <van-tabs sticky route replace swipeable animated color="#90ee90" v-model="active">
       <van-tab>
         <!-- 轮播图 -->
         <van-swipe :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="(i,id) in lbtimages" :key="id">
-            <img :src="i.pic" width="100%" />
+            <img :src="i.pic" width="100%"  @click="LBTsong(i.song.id)" />
           </van-swipe-item>
         </van-swipe>
         <!-- topics热门话题 -->
         <div class="topics">
-          <h4>热门话题</h4>
+          <h4>电台指南</h4>
           <van-swipe :loop="false" :width="200" :show-indicators="false">
-            <van-swipe-item v-for="(i,index) in lbtimages" :key="index">
-              <img :src="i.pic" style="width:180px" alt />
+            <van-swipe-item v-for="(i,index) in topic" :key="index">
+              <img :src="i.user.avatarUrl" style="width:150px"/>
+              <p style="font-size:12px;width:150px">【{{i.user.nickname}}】{{i.content}}</p>
             </van-swipe-item>
           </van-swipe>
         </div>
         <!-- lick图情感屏幕 -->
-        <div class="link" v-for="(i,index) in links" :key="index" :style="{background: 'url( '+ i.coverImgUrl +')'}">
-            {{i.name}}
-            <p>
-              <b>
-                <i>{{i.subscribedCount}}</i>人
-              </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <van-button
-                icon="good-job"
-                type="primary"
-                text="点赞"
-                size="mini"
-                click
-                color="#000"
-                plain
-              />
-            </p>
+        <div
+          class="link"
+          v-for="(i,index) in links"
+          :key="index"
+          :style="{background: 'url( '+ i.coverImgUrl +')'}"
+        >
+          {{i.name}}
+          <p>
+            <b>
+              <i>{{i.subscribedCount}}</i>人
+            </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <van-button
+              icon="good-job"
+              type="primary"
+              text="点赞"
+              size="mini"
+              click
+              color="#000"
+              plain
+            />
+          </p>
         </div>
+        <div style="height:50px"></div>
+
         <div slot="title">
           <van-icon name="hot-o" />
         </div>
@@ -94,7 +102,7 @@
 
 <script>
 import axios from "axios"; //引入axiso组件
-import { formatDate } from "../../time.js";
+import { formatDate } from "../../time";
 
 export default {
   data() {
@@ -102,13 +110,24 @@ export default {
       lbtimages: [],
       links: [],
       mv: [],
-      site: []
+      topic: [],
+      site: [],
+      active: 1
     };
   },
   filters: {
     formatDate(time) {
       var data = new Date(time);
       return formatDate(data, "yyyy-MM-dd");
+    }
+  },
+  watch: {
+    active(a, b) {
+      if (a == 3) {
+        this.$router.push({
+          name: "playMusic"
+        });
+      }
     }
   },
   methods: {
@@ -128,6 +147,15 @@ export default {
           id: res
         }
       });
+    },
+    LBTsong(res) {
+      //console.log(res)
+      this.$router.push({
+        name: "LBT-song",
+        query: {
+          id: res
+        }
+      });
     }
   },
 
@@ -139,6 +167,14 @@ export default {
       // 轮播图
       this.lbtimages = res.data.banners;
     }),
+      axios
+        .get("http://net-music.penkuoer.com/comment/dj?id=794062371")
+        .then(res => {
+          //console.log(res.data.comments);
+          //电台接口
+          // 热门话题
+          this.topic = res.data.comments;
+        }),
       axios
         .get("http://net-music.penkuoer.com/top/playlist/catlist")
         .then(res => {
@@ -153,7 +189,7 @@ export default {
         this.mv = res.data.data;
       }),
       axios
-        .get("http://net-music.penkuoer.com/top/playlist?limit=20&order=hot")
+        .get("http://net-music.penkuoer.com/top/playlist?limit=10&order=hot")
         .then(res => {
           //console.log(res.data.playlists[0].id)
           //附近动态
@@ -165,7 +201,7 @@ export default {
 
 <style scoped>
 .topics h4 {
-  text-indent: -200px;
+  margin:0.5em 2em;
 }
 
 .link {
@@ -182,8 +218,8 @@ export default {
   padding-top: 35px;
 }
 
-.tab2{
-  text-align: center
+.tab2 {
+  text-align: center;
 }
 .tab2 p {
   font-size: 12px;
@@ -218,7 +254,7 @@ export default {
   box-shadow: 10px 10px 5px #888888;
   border-radius: 50px;
   overflow: hidden;
-  text-align: center
+  text-align: center;
 }
 
 .nearby-dl dt img {

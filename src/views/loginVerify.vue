@@ -77,6 +77,9 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  text-align: center;
+}
 .iphon-login {
   margin-top: 30px;
   padding: 10px 30px;

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top:46px;">
+  <div style="padding-top:46px;">
     <van-nav-bar left-text="返回" :title="singertitle.artistName" left-arrow fixed>
       <van-icon name="arrow-left" slot="left" @click="toFrom()" />
     </van-nav-bar>
@@ -18,7 +18,7 @@
         <b>【MV简介: {{singertitle.name}}】</b>
         {{singertitle.briefDesc}}
       </p>
-     <b style="color:#087df3">{{singertitle.publishTime}}</b>
+      <b style="color:#087df3">{{singertitle.publishTime}}</b>
       <p v-if="singertitle.desc != null && singertitle.desc !=''">
         <b>【描述】:</b>
         {{singertitle.desc}}
@@ -26,7 +26,7 @@
     </div>
     <p>与{{singertitle.artistName}}相关</p>
     <div class="xgmvcss">
-      <van-grid :column-num="2" icon-size="170px" :dot="true" :border="false" >
+      <van-grid :column-num="2" icon-size="170px" :dot="true" :border="false">
         <van-grid-item
           v-for="(xgmv,index) in xgMV"
           :key="index"
@@ -37,11 +37,14 @@
     </div>
     <div class="common" v-for="(item,i) in discuss" :key="i">
       <div class="allUser">
-          <div class="touxiang">
+        <div class="touxiang">
           <img :src="item.user.avatarUrl" alt srcset />
         </div>
         <div class="inner">
-          <p class="com">{{item.user.nickname}}<b class="timer">【{{item.time | formatDate}}】</b></p>
+          <p class="com">
+            {{item.user.nickname}}
+            <b class="timer">【{{item.time | formatDate}}】</b>
+          </p>
           <p>{{item.content}}</p>
         </div>
       </div>
@@ -50,15 +53,12 @@
   </div>
 </template>
 <script>
-
 import axios from "axios";
-import { formatDate } from "../../../time.js";
+import { formatDate } from "../../time";
 export default {
   methods: {
-    toFrom(res) {
-      this.$router.push({
-        name: "friend"
-      });
+    toFrom() {
+      this.$router.go(-1);
     }
   },
   filters: {
@@ -76,8 +76,8 @@ export default {
     };
   },
   created() {
-    var id = localStorage.getItem('token')
-      console.log(id)
+    var id = localStorage.getItem("token");
+    console.log(id);
     axios
       .get("http://net-music.penkuoer.com/mv/url?id=" + this.$route.query.id)
       .then(res => {
@@ -127,7 +127,6 @@ export default {
   display: flex;
   /* border-bottom:1px solid; */
   /* box-shadow: 0px 10px 5px #eadfdf; */
-
 }
 
 .touxiang {

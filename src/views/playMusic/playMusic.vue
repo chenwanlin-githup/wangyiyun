@@ -18,8 +18,8 @@
       </div>
       <div class="pm-message">
         <div class="pm-message-geci" @click="show = !show">
+          {{ getAllKey }}
           <div class="pm-message-geci-p" v-if="show">
-            {{ getAllKey }}
             <p
               class="lrc-p"
               v-show="
@@ -35,8 +35,12 @@
             </p>
           </div>
           <div v-else>
-            {{ getAllKey }}
-            <p class="lrc-p" v-for="(item, index) in lrcData" :key="index">
+            <p
+              class="lrc-p"
+              v-for="(item, index) in lrcData"
+              :key="index"
+              :style="{color:'rgb(9, 85, 248)'}"
+            >
               <span v-for="(value,num) in item" :key="num">{{value}}</span>
             </p>
           </div>
@@ -50,7 +54,7 @@
               <van-icon name="down" />
             </li>
             <li>
-              <van-icon name="chat-o" />
+              <van-icon name="chat-o" @click="toPinglun()" />
             </li>
             <li>
               <van-icon name="ellipsis" />
@@ -63,9 +67,8 @@
         <div class="jindutiao">
           <van-progress
             :percentage="ppp"
-            pivot-text="紫色"
-            pivot-color="white"
-            color="blue"
+            pivot-color="gray"
+            color="rgb(9, 85, 248)"
             track-color="grey"
             stroke-width="4px"
           />
@@ -108,7 +111,7 @@
                   class="liebiao-zujian-message-music"
                   v-for="(item,index) in data"
                   :key="index"
-                  @click="playMusic(item.name,item.ar[0].name,item.id)"
+                  @click="playMusic(item.name,item.ar[0].name,item.id,item.al.picUrl)"
                 >
                   <p class="liebiao-zujian-message-music-index">{{index+1}}</p>
                   <div class="liebiao-zujian-message-music-name">
@@ -148,11 +151,14 @@ export default {
       data: "",
       gequ: [],
       srcMp3: "",
-      idM: 347230
+      idM: 347230,
+      idmNav: 1
     };
   },
 
   mounted() {
+    this.imgs = false;
+
     if (this.$route.query.id) {
       this.idM = this.$route.query.id;
     }
@@ -181,8 +187,26 @@ export default {
       .catch(err => {
         console.log(err);
       });
+    if (this.$route.query.idx) {
+      this.idmNav = this.$route.query.idx;
+    }
+    axios
+      .get("http://net-music.penkuoer.com//top/list?idx=" + this.idmNav)
+      .then(res => {
+        this.data = res.data.playlist.tracks;
+        //console.log(this.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   methods: {
+    toPinglun() {
+      this.$router.push({
+        name: "pinglun",
+        query: { id: this.idM, url: "playMusic" }
+      });
+    },
     toFrom() {
       this.$router.go(-1);
     },
@@ -224,13 +248,16 @@ export default {
     showPopup() {
       this.showTan = true;
     },
-    playMusic(geming, geshou, gequId) {
+    playMusic(geming, geshou, gequId, gepicUrl) {
+      this.imgs = false;
       this.gequ = [geming, geshou, gequId];
       //console.log(this.gequ);
+      this.idM = gequId;
+      this.backgroundUrl = gepicUrl;
       axios
         .get("http://net-music.penkuoer.com/song/url?id=" + this.gequ[2])
         .then(res => {
-          console.log(res);
+          //console.log(res);
           this.srcMp3 = res.data.data[0].url;
           //sconsole.log(this.srcMp3);
         })
@@ -379,7 +406,7 @@ export default {
   text-align: center;
 }
 .geci-one {
-  color: rgb(90, 13, 235);
+  color: rgb(9, 85, 248);
   font-size: 1.2rem;
 }
 .pm-message-nav {

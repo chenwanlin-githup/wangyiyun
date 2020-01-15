@@ -54,11 +54,15 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  text-align: center;
+}
 .login {
   height: 100%;
   background: url("../assets/accountimage/loginOther/red.jpg") no-repeat;
   background-size: 1000px 1000px;
   background-position-y: -200px;
+  overflow: hidden;
 }
 .login-icon-arrow {
   padding: 10px;
@@ -86,7 +90,7 @@ export default {
 }
 .login-other-img {
   overflow: hidden;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .login-other-img > li {
   float: left;

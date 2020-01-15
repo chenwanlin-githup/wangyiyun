@@ -52,16 +52,6 @@ const routes = [
         path: "/account",
         name: "account",
         component: () => import("../views/child/account.vue")
-      },
-      {
-        path: "/friend/mv",
-        name: "mv",
-        component: () => import("../views/child/friend/mv.vue")
-      },
-      {
-        path: "/friend/dynamic",
-        name: "dynamic",
-        component: () => import("../views/child/friend/dynamic.vue")
       }
     ]
   },
@@ -96,6 +86,21 @@ const routes = [
     component: () => import("../views/playMusic/playMusic.vue")
   },
   {
+    path: "/friend/mv",
+    name: "mv",
+    component: () => import("../views/friend/mv.vue")
+  },
+  {
+    path: "/friend/dynamic",
+    name: "dynamic",
+    component: () => import("../views/friend/dynamic.vue")
+  },
+  {
+    path: "/friend/LBT-song",
+    name: "LBT-song",
+    component: () => import("../views/friend/LBT-song.vue")
+  },
+  {
     path: "/search",
     name: "search",
     component: () => import("../views/DFH/Search.vue")
@@ -127,6 +132,11 @@ const routes = [
     path: "/paihangbang",
     name: "paihangbang",
     component: () => import("../views/DFH/paihangbang.vue")
+  },
+  {
+    path: "/pinglun",
+    name: "pinglun",
+    component: () => import("../views/pinglun/pinglun.vue")
   }
 ];
 
