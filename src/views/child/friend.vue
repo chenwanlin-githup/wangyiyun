@@ -189,7 +189,7 @@ export default {
         this.mv = res.data.data;
       }),
       axios
-        .get("http://net-music.penkuoer.com/top/playlist?limit=20&order=hot")
+        .get("http://net-music.penkuoer.com/top/playlist?limit=10&order=hot")
         .then(res => {
           //console.log(res.data.playlists[0].id)
           //附近动态
