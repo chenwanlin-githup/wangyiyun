@@ -1,6 +1,6 @@
 <template>
   <div id="friend">
-    <van-tabs sticky route replace animated color="#90ee90">
+    <van-tabs sticky route replace swipeable animated color="#90ee90">
       <van-tab>
         <!-- 轮播图 -->
         <van-swipe :autoplay="3000" indicator-color="white">
@@ -82,7 +82,7 @@
         </dl>
         <div style="height:50px"></div>
       </van-tab>
-      <van-tab :to="{name:'play',query:{url:'friend'}}">
+      <van-tab :to="{name:'playMusic',query:{url:'friend'}}">
         内容4
         <div slot="title">
           <van-icon name="music" />
@@ -182,6 +182,9 @@ export default {
   padding-top: 35px;
 }
 
+.tab2{
+  text-align: center
+}
 .tab2 p {
   font-size: 12px;
   text-align: center;
@@ -215,6 +218,7 @@ export default {
   box-shadow: 10px 10px 5px #888888;
   border-radius: 50px;
   overflow: hidden;
+  text-align: center
 }
 
 .nearby-dl dt img {
