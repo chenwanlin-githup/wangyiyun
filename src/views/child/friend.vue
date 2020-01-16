@@ -160,7 +160,7 @@ export default {
     LBTsong(res) {
       //console.log(res)
       this.$router.push({
-        name: "LBT-song",
+        name: "playMusic",
         query: {
           id: res
         }

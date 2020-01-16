@@ -100,11 +100,7 @@ const routes = [
     name: "dynamic",
     component: () => import("../views/friend/dynamic.vue")
   },
-  {
-    path: "/friend/LBT-song",
-    name: "LBT-song",
-    component: () => import("../views/friend/LBT-song.vue")
-  },
+  
   {
     path: "/search",
     name: "search",
