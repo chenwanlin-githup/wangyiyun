@@ -1,178 +1,173 @@
 <template>
-
   <div id="back">
     <div id="hang">
-      <van-nav-bar title="我的音乐" left-text="更多">
+      <div class="nav">
 
-       <img
-        class="navImg"
-        src="../../assets/accountimage/bfi.png"
-        alt
-        slot="right"
-        width="20px"
-        height="20px"
-         @click="toFrom()"
-      />
-</van-nav-bar>
-
+        <div>更多</div>
+        <div class="teshu">我的音乐</div>
+        <img
+          class="navImg"
+          src="../../assets/accountimage/bfi.png"
+          alt
+          slot="right"
+          width="20px"
+          height="20px"
+          @click="toFrom()"
+        />
+      </div>
     </div>
 
     <div>
-
       <div class="ben">
-
-      <div class="nav-xiaoxi">
-        <div class="nav-xiaoxi-icon">
-          <img class="nav-xiaoxi-icon" src="../../assets/accountimage/bendi.png" alt />
+        <div class="nav-xiaoxi">
+          <div class="nav-xiaoxi-icon">
+            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/bendi.png" alt />
+          </div>
+          <div class="nav-xiaoxi-zi">本地音乐</div>
+          <div class="nav-xiaoxi-icon2">
+            <van-icon name="arrow" />
+          </div>
+          <div class="nav-zu">248</div>
         </div>
-        <div class="nav-xiaoxi-zi">本地音乐</div>
-        <div class="nav-xiaoxi-icon2">
-          <van-icon name="arrow" />
-
-        </div>
-           <div class="nav-zu">248</div>
-      </div>
-      <div class="nav-xiaoxi">
-        <div class="nav-xiaoxi-icon">
-          <img class="nav-xiaoxi-icon" src="../../assets/accountimage/likee.png" alt />
-        </div>
-        <div class="nav-xiaoxi-zi">最近播放</div>
-         <div class="nav-xiaoxi-icon2">
-          <van-icon name="arrow" />
-        </div>
-
-        <div class="nav-zu">100</div>
-
-
-      </div>
-
-           <div class="nav-xiaoxi">
-        <div class="nav-xiaoxi-icon">
-          <img class="nav-xiaoxi-icon" src="../../assets/accountimage/dt.png" alt />
-        </div>
-        <div class="nav-xiaoxi-zi">我的电台</div>
-        <div class="nav-xiaoxi-icon2">
-          <van-icon name="arrow" />
-
-        </div>
-           <div class="nav-zu">3</div>
-      </div>
-      <div class="nav-xiaoxi">
-        <div class="nav-xiaoxi-icon">
-          <img class="nav-xiaoxi-icon" src="../../assets/accountimage/sc.png" alt />
-        </div>
-        <div class="nav-xiaoxi-zi">收藏</div>
-         <div class="nav-xiaoxi-icon2">
-          <van-icon name="arrow" />
-        </div>
-
-        <div class="nav-zu">0</div>
-
-
-      </div>
-
-          <div class="xihuan">
-                <div class="xihuan-chuang" @click="showHide()">我创建的歌单（1）</div>
-
-            </div>
-
-              <div id="div1">
-
-                  <img class="xihuan-xi" src="../../assets/accountimage/ilike.png" />
-
-                  <div class="xihuan-huan"  @click="yiao()" >
-                      <p class="dg">我喜欢的歌</p>
-                       <p>7首，已下载4首</p>
-
-                  </div>
-
-              </div>
-
-
-              <div class="xihuan-shou">
-
-                            <div class="cang"  @click="yinc()">我收藏的歌单(8)</div>
-
-              </div>
-
-              <div id="cang-div">
-                <div class="cang-xian" @click="yiao()" >
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-                  <div class="cang-xian">
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-                   <div class="cang-xian">
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-                  <div class="cang-xian">
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-                    <div class="cang-xian">
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-                     <div class="cang-xian">
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-                      <div class="cang-xian">
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-                     <div class="cang-xian">
-                  <img class="cang-xi" src="../../assets/accountimage/timg.jpg" />
-                          <p class="cang-p1">入耳便喜欢上的英文歌</p>
-                          <p class="cang-p2">86首，by 不来不去，已下载1首</p>
-                          </div>
-
-              </div>
-
-
+        <div class="nav-xiaoxi">
+          <div class="nav-xiaoxi-icon">
+            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/likee.png" alt />
+          </div>
+          <div class="nav-xiaoxi-zi">最近播放</div>
+          <div class="nav-xiaoxi-icon2">
+            <van-icon name="arrow" />
           </div>
 
+          <div class="nav-zu">100</div>
+        </div>
 
-
+        <div class="nav-xiaoxi">
+          <div class="nav-xiaoxi-icon">
+            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/dt.png" alt />
+          </div>
+          <div class="nav-xiaoxi-zi" @click="diantai()">我的电台</div>
+          <div class="nav-xiaoxi-icon2">
+            <van-icon name="arrow" />
+          </div>
+          <div class="nav-zu">{{broadcasting.count}}</div>
+        </div>
+        <div class="nav-xiaoxi">
+          <div class="nav-xiaoxi-icon">
+            <img class="nav-xiaoxi-icon" src="../../assets/accountimage/sc.png" alt />
+          </div>
+          <div class="nav-xiaoxi-zi">收藏</div>
+          <div class="nav-xiaoxi-icon2">
+            <van-icon name="arrow" />
           </div>
 
+          <div class="nav-zu">0</div>
+        </div>
 
+        <div class="xihuan">
+          <div class="xihuan-chuang" @click="isShow=!isShow">我创建的歌单</div>
+        </div>
+        <div id="div1" v-if="isShow">
+          <img class="xihuan-xi" src="../../assets/accountimage/ilike.png" />
+          <div class="xihuan-huan" @click="yiao()">我喜欢的歌</div>
+        </div>
 
+        <div @click="isHHH=!isHHH" class="xihuan-shou">
+          <div class="cang">我收藏的歌单</div>
+        </div>
+        <div id="cang-div" v-if="isHHH">
+          <div class="cang-xian" @click="yiao" v-for="(item,index) in collect" :key="index">
+            <img class="cang-xi" :src="item .coverImgUrl" />
+           <div class="cang-1"> {{item.name}}</div>
+          </div>
+        </div>
       </div>
-
-
+    </div>
+  </div>
 </template>
 
 
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      collect: "",
+      broadcasting: "",
+      like: "",
+      isShow: false,
+      isHHH: false
+    };
+  },
+  methods: {
+    toFrom() {
+      this.$router.push({
+        name: "playMusic"
+      });
+    },
+    yiao() {
+      this.$router.push({
+        name: "meDan"
+      });
+    },
+    toShow() {
+      this.show = !this.show;
+    }
+  },
+
+  created() {
+    var id = JSON.parse(localStorage.getItem("token"));
+    console.log(id);
+    axios
+      .get("http://net-music.penkuoer.com//top/playlist?limit=10&order=new")
+      .then(res => {
+        console.log(res.data.playlists);
+
+        this.collect = res.data.playlists;
+      }),
+      axios.get("http://net-music.penkuoer.com/user/dj?uid=" + id).then(res => {
+        //console.log(res.data);
+
+        this.broadcasting = res.data;
+      })
+  }
+};
+</script>
 
 
 <style scoped>
-*{
+* {
   margin: 0;
   padding: 0;
 }
-.hang{
+.hang {
   height: 50px;
 }
-.van-nav-bar__text{
-  color:black
+.nav{
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
-.ben{
+.teshu{
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+text-align: center
+}
+
+.nav-lt{
+	font-size: 25px;
+}.nav-rt{
+	font-size: 30px;
+}
+
+.ben {
   padding-left: 10px;
   padding-right: 11px;
   margin-bottom: 50px;
 }
-.nav-zu{
+.nav-zu {
   font-size: 13px;
   height: 3rem;
   float: right;
@@ -184,7 +179,7 @@
 
   border: 0.05rem solid gainsboro;
   border-left: none;
-   border-right: none;
+  border-right: none;
   overflow: hidden;
 }
 .nav-xiaoxi-icon {
@@ -212,120 +207,81 @@
   line-height: 3rem;
 }
 
-.xihuan{
+.xihuan {
   width: 100%;
   height: 40px;
-  background:#eee;
+  background: #eee;
 }
 
-.xihuan-chuang{
+.xihuan-chuang {
+  width: 100%;
   height: 40px;
-    float: left;
-    line-height:40px;
+  line-height: 40px;
 }
-#div1{
+#div1 {
+  width: 200px;
   height: 45px;
-  display: none;
+  display: flex;
+  align-items: center;
 }
-
-.xihuan-xi{
+.xihuan-xi {
+  margin: 0 10px;
   width: 30px;
   height: 30px;
-  float: left;
-  padding-left: 20px;
-  padding-top:5px;
 }
 .xihuan-huan {
-  height: 50px;
-    float: left;
-
-     width: 300px;
+  line-height: 45px;
+  height: 45px;
+  width: 100px;
 }
-.xihuan-huan p {
-  width:150px;
-  font-size:16px;
-
+.cang-1 {
+  height: 23px;
+  font-size: 16px;
+  line-height:45px
 }
-.cang-p1{
+.cang-p1 {
+  width: 200px;
+  overflow: hidden;
   padding-right: 50px;
 }
-.dg{
+.dg {
+  height: 40px;
+  line-height: 40px;
   font-size: 21px;
 }
 
-.xihuan-shou{
+.xihuan-shou {
   width: 100%;
   height: 40px;
-  background:#EEE;
+  background: #eee;
 }
-.cang{
-    height: 40px;
-    float: left;
-    line-height:40px;
+.cang {
+  height: 40px;
+  float: left;
+  line-height: 40px;
 }
 
-#cang-div{
-width:100%;
-display: none;
-margin-top:10px;
-
+#cang-div {
+  width: 100%;
+  margin-top: 10px;
 }
-#cang-div p{
+#cang-div p {
+  width: 100%;
   height: 20px;
   margin-right: 30px;
 }
-.cang-xi{
+.cang-xi {
   width: 40px;
   height: 40px;
-  float:left;
+  float: left;
   padding-left: 10px;
 }
-.cang-xian{
+.cang-xian {
   height: 50px;
-   border-bottom:1px solid #eee
+  text-align: center;
+  border-bottom: 1px solid #eee;
 }
-.cang-p2{
+.cang-p2 {
   color: #e8e8e8;
 }
-  </style>
-
-<script>
-export default {
-   methods:{
-     toFrom() {
-      this.$router.push({
-        name: "play"
-      });
-    },yiao(){
-      this.$router.push({
-        name: "gedan"
-      });
-
-    },
-
-
-      showHide(){
-      var obj =document.getElementById("div1");
-      if(obj.style.display=="none"){
-        obj.style.display="block";
-      }else{
-        obj.style.display="none"
-      }
-     },
-     yinc(){
-       var  obj = document.getElementById("cang-div");
-
-       if(obj.style.display=="none"){
-         obj.style.display="block";
-       }else{
-         obj.style.display="none"
-       }
-     }
-   },
-
-}
-
-
-</script>
-
-
+</style>

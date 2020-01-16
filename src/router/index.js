@@ -59,7 +59,12 @@ const routes = [{
 				path: "/friend/dynamic",
 				name: "dynamic",
 				component: () => import("../views/child/friend/dynamic.vue")
-			}
+      },
+      {
+				path: "/friend/medan",
+				name: "meDan",
+				component: () => import("../views/child/friend/meDan.vue")
+      }
 		]
 	},
 	{
@@ -123,7 +128,7 @@ const routes = [{
 		path: "/paihangbang",
 		name: 'paihangbang',
 		component: () => import("../views/DFH/paihangbang.vue")
-	}
+  },
 ];
 
 const router = new VueRouter({
