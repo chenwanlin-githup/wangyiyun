@@ -167,6 +167,13 @@
 <script>
 import axios from "axios";
 import { formatDate } from "../../time";
+import {
+  getMusicurl,
+  getMusicdetail,
+  getMusictoplist,
+  getMusiccommentmusic,
+  getMusiclyric
+} from "../../utils/axiosRequile";
 export default {
   name: "playMusic",
   data() {
@@ -206,8 +213,8 @@ export default {
     if (this.$route.query.id) {
       this.idM = this.$route.query.id;
     }
-    axios
-      .get("http://net-music.penkuoer.com/song/url?id=" + this.idM)
+    //  获取歌曲MP3
+    getMusicurl(this.idM)
       .then(res => {
         //console.log(res);
         this.srcMp3 = res.data.data[0].url;
@@ -216,8 +223,8 @@ export default {
       .catch(err => {
         console.log(err);
       });
-    axios
-      .get("http://net-music.penkuoer.com//song/detail?ids=" + this.idM)
+    // 获取歌曲详情,歌名，歌手名，歌曲id
+    getMusicdetail(this.idM)
       .then(res => {
         this.backgroundUrl = res.data.songs[0].al.picUrl;
         this.gequ = [
@@ -234,11 +241,10 @@ export default {
     if (this.$route.query.idx) {
       this.idmNav = this.$route.query.idx;
     }
-    axios
-      .get("http://net-music.penkuoer.com//top/list?idx=" + this.idmNav)
+    //获取榜单歌曲列表
+    getMusictoplist(this.idmNav)
       .then(res => {
         this.data = res.data.playlist.tracks;
-        //console.log(this.data);
       })
       .catch(err => {
         console.log(err);
@@ -247,13 +253,12 @@ export default {
   methods: {
     showPL() {
       this.showPinglun = true;
-      axios
-        .get("http://net-music.penkuoer.com/comment/music?id=" + this.idM)
-        .then(res => {
-          this.gdplNumber = res.data.hotComments;
-        });
-      axios
-        .get("http://net-music.penkuoer.com/song/detail?ids=" + this.idM)
+      //获取歌曲评论
+      getMusiccommentmusic(this.idM).then(res => {
+        this.gdplNumber = res.data.hotComments;
+      });
+      // 获取歌曲详情,歌名，歌手名，歌曲id
+      getMusicdetail(this.idM)
         .then(res => {
           this.musicDetaile = res.data.songs[0];
           this.geshou = res.data.songs[0].ar[0].name;
@@ -296,13 +301,11 @@ export default {
 
       if (audio !== null) {
         //检测播放是否已暂停.audio.paused 在播放器播放时返回false.
-
         if (audio.paused) {
           this.imgs = false;
           audio.play(); //audio.play();// 这个就是播放
         } else {
           this.imgs = true;
-
           audio.pause(); // 这个就是暂停
         }
       }
@@ -316,12 +319,10 @@ export default {
       //console.log(this.gequ);
       this.idM = gequId;
       this.backgroundUrl = gepicUrl;
-      axios
-        .get("http://net-music.penkuoer.com/song/url?id=" + this.gequ[2])
+      //  获取歌曲MP3
+      getMusicurl(this.gequ[2])
         .then(res => {
-          //console.log(res);
           this.srcMp3 = res.data.data[0].url;
-          //sconsole.log(this.srcMp3);
         })
         .catch(err => {
           console.log(err);
@@ -330,8 +331,10 @@ export default {
   },
   watch: {
     gequ(a, b) {
-      axios
-        .get("http://net-music.penkuoer.com//lyric?id=" + a[2])
+      //获取歌词
+      getMusiclyric(a[2])
+        // axios
+        //   .get("http://net-music.penkuoer.com//lyric?id=" + )
         .then(res => {
           this.lrc = res.data;
           // 歌词数据格式处理
