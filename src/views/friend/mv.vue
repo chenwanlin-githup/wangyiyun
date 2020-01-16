@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-top:46px;">
+  <div style="padding-top:46px;text-align: center;">
     <van-nav-bar left-text="返回" :title="singertitle.artistName" left-arrow fixed>
       <van-icon name="arrow-left" slot="left" @click="toFrom()" />
     </van-nav-bar>
@@ -26,7 +26,7 @@
     </div>
     <p>与{{singertitle.artistName}}相关</p>
     <div class="xgmvcss">
-      <van-grid :column-num="2" icon-size="170px" :dot="true" :border="false">
+      <van-grid :column-num="2" icon-size="138px" :dot="true" :border="false">
         <van-grid-item
           v-for="(xgmv,index) in xgMV"
           :key="index"
