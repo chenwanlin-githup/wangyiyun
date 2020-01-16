@@ -54,7 +54,40 @@
               <van-icon name="down" />
             </li>
             <li>
-              <van-icon name="chat-o" @click="toPinglun()" />
+              <van-cell @click="showPL()">
+                <van-icon name="chat-o" />
+              </van-cell>
+
+              <van-popup
+                v-model="showPinglun"
+                closeable
+                close-icon-position="top-left"
+                position="right"
+                :style="{ height: '100%',width:'100%' }"
+              >
+                <div class="Pinglun-kuang">
+                  <div class="Pinglun-head">精彩评论</div>
+                  <div class="Pinglun-neirong">
+                    <van-card :desc="geshou" :title="musicDetaile.name" :thumb="geImg" centered />
+                    <div class="common">
+                      <h3>当前评论: &nbsp;&nbsp;&nbsp;{{gdplNumber.length}}条</h3>
+                      <div class="allUser" v-for="(item,i) in gdplNumber" :key="i">
+                        <div class="touxiang">
+                          <img :src="item.user.avatarUrl" alt srcset />
+                        </div>
+                        <div class="inner">
+                          <p class="userName">
+                            {{item.user.nickname}}
+                            <b class="timer">【{{item.time | formatDate}}】</b>
+                          </p>
+                          <p class="com">{{item.content}}</p>
+                        </div>
+                      </div>
+                      <div style="height:50px"></div>
+                    </div>
+                  </div>
+                </div>
+              </van-popup>
             </li>
             <li>
               <van-icon name="ellipsis" />
@@ -133,6 +166,7 @@
 </template>
 <script>
 import axios from "axios";
+import { formatDate } from "../../time";
 export default {
   name: "playMusic",
   data() {
@@ -140,6 +174,7 @@ export default {
       showTan: false,
       backgroundUrl: "",
       show: true,
+      showPinglun: false,
       imgs: true,
       ppp: 0,
       timehead: "",
@@ -152,10 +187,19 @@ export default {
       gequ: [],
       srcMp3: "",
       idM: 347230,
-      idmNav: 1
+      idmNav: 1,
+      gdplNumber: [],
+      musicDetaile: "",
+      geshou: "",
+      geImg: ""
     };
   },
-
+  filters: {
+    formatDate(time) {
+      var data = new Date(time);
+      return formatDate(data, "yyyy-MM-dd");
+    }
+  },
   mounted() {
     this.imgs = false;
 
@@ -201,6 +245,24 @@ export default {
       });
   },
   methods: {
+    showPL() {
+      this.showPinglun = true;
+      axios
+        .get("http://net-music.penkuoer.com/comment/music?id=" + this.idM)
+        .then(res => {
+          this.gdplNumber = res.data.hotComments;
+        });
+      axios
+        .get("http://net-music.penkuoer.com/song/detail?ids=" + this.idM)
+        .then(res => {
+          this.musicDetaile = res.data.songs[0];
+          this.geshou = res.data.songs[0].ar[0].name;
+          this.geImg = res.data.songs[0].al.picUrl;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     toPinglun() {
       this.$router.push({
         name: "pinglun",
@@ -492,5 +554,88 @@ export default {
 .liebiao-zujian-message-music-name > p:nth-child(2) {
   color: gray;
   font-size: 12px;
+}
+/* 评论 */
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+}
+.common {
+  padding-left: 10px;
+}
+
+.common h3 {
+  font-size: 16px;
+  font-weight: 900;
+  text-align: left;
+  text-indent: 10px;
+  margin-top: 20px;
+}
+
+.allUser {
+  display: flex;
+}
+
+.touxiang {
+  width: 50px;
+  margin-top: 5px;
+}
+
+.touxiang img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.inner {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: left;
+  flex: 1;
+  padding-left: 10px;
+  font-size: 12px;
+  border-bottom: double 1px rgba(242, 242, 242, 0.3);
+}
+
+.inner .timer {
+  padding: 0px 0px 3px 0px;
+  color: red;
+  font-size: 8px;
+  float: right;
+}
+
+.inner .com {
+  line-height: 26px;
+  font-size: 14px;
+}
+.Pinglun-kuang {
+  height: 100%;
+}
+.Pinglun-head {
+  height: 7%;
+  text-align: center;
+  line-height: 50px;
+}
+.Pinglun-neirong {
+  height: 93%;
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.van-cell {
+  background: none;
+}
+.van-icon-chat-o {
+  margin-left: 50%;
+  font-size: 22px;
 }
 </style>
