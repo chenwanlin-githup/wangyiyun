@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vant from "vant";
-
+import "./utils/back";
 import "vant/lib/index.css";
 import App from "./App.vue";
 import router from "./router";

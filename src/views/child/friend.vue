@@ -5,7 +5,7 @@
         <!-- 轮播图 -->
         <van-swipe :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="(i,id) in lbtimages" :key="id">
-            <img :src="i.pic" width="100%"  @click="LBTsong(i.song.id)" />
+            <img :src="i.pic" width="100%" @click="LBTsong(i.song.id)" />
           </van-swipe-item>
         </van-swipe>
         <!-- topics热门话题 -->
@@ -13,7 +13,7 @@
           <h4>电台指南</h4>
           <van-swipe :loop="false" :width="200" :show-indicators="false">
             <van-swipe-item v-for="(i,index) in topic" :key="index">
-              <img :src="i.user.avatarUrl" style="width:150px"/>
+              <img :src="i.user.avatarUrl" style="width:150px" />
               <p style="font-size:12px;width:150px">【{{i.user.nickname}}】{{i.content}}</p>
             </van-swipe-item>
           </van-swipe>
@@ -112,7 +112,7 @@ export default {
       mv: [],
       topic: [],
       site: [],
-      active: 1
+      active: 0
     };
   },
   filters: {
@@ -189,7 +189,7 @@ export default {
         this.mv = res.data.data;
       }),
       axios
-        .get("http://net-music.penkuoer.com/top/playlist?limit=10&order=hot")
+        .get("http://net-music.penkuoer.com/top/playlist?limit=8&order=hot")
         .then(res => {
           //console.log(res.data.playlists[0].id)
           //附近动态
@@ -201,7 +201,7 @@ export default {
 
 <style scoped>
 .topics h4 {
-  margin:0.5em 2em;
+  margin: 0.5em 2em;
 }
 
 .link {
@@ -232,6 +232,9 @@ export default {
   background: skyblue;
 }
 
+.tab2 li img {
+  border-radius: 25px;
+}
 .tab2 li i {
   font-size: 12px;
   font-style: normal;
@@ -254,6 +257,8 @@ export default {
   box-shadow: 10px 10px 5px #888888;
   border-radius: 50px;
   overflow: hidden;
+  width: 90%;
+  margin: 30px auto;
   text-align: center;
 }
 
