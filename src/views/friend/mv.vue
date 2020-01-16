@@ -1,64 +1,82 @@
 <template>
-  <div style="padding-top:46px;text-align: center;">
-    <van-nav-bar left-text="返回" :title="singertitle.artistName" left-arrow fixed>
-      <van-icon name="arrow-left" slot="left" @click="toFrom()" />
-    </van-nav-bar>
-    <video
-      id="myVideo"
-      :src="playMV"
-      controls="controls"
-      autoplay="true"
-      preload="auto"
-      width="100%"
-      poster
-      ref="viddeo"
-    ></video>
-    <div style="font-size:15px;">
-      <p>
-        <b>【MV简介: {{singertitle.name}}】</b>
-        {{singertitle.briefDesc}}
-      </p>
-      <b style="color:#087df3">{{singertitle.publishTime}}</b>
-      <p v-if="singertitle.desc != null && singertitle.desc !=''">
-        <b>【描述】:</b>
-        {{singertitle.desc}}
-      </p>
-    </div>
-    <p>与{{singertitle.artistName}}相关</p>
-    <div class="xgmvcss">
-      <van-grid :column-num="2" icon-size="138px" :dot="true" :border="false">
-        <van-grid-item
-          v-for="(xgmv,index) in xgMV"
-          :key="index"
-          :icon="xgmv.coverUrl"
-          :text="xgmv.title"
-        />
-      </van-grid>
-    </div>
-    <div class="common" v-for="(item,i) in discuss" :key="i">
-      <div class="allUser">
-        <div class="touxiang">
-          <img :src="item.user.avatarUrl" alt srcset />
-        </div>
-        <div class="inner">
-          <p class="com">
-            {{item.user.nickname}}
-            <b class="timer">【{{item.time | formatDate}}】</b>
-          </p>
-          <p>{{item.content}}</p>
+  <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+    <div style="padding-top:46px;text-align: center;">
+      <van-nav-bar left-text="返回" :title="singertitle.artistName" left-arrow fixed>
+        <van-icon name="arrow-left" slot="left" @click="toFrom()" />
+      </van-nav-bar>
+      <video
+        id="myVideo"
+        :src="playMV"
+        controls="controls"
+        autoplay="true"
+        preload="auto"
+        width="100%"
+        poster
+        ref="viddeo"
+      ></video>
+      <div style="font-size:15px;">
+        <p>
+          <b>【MV简介: {{singertitle.name}}】</b>
+          {{singertitle.briefDesc}}
+        </p>
+        <b style="color:#087df3">{{singertitle.publishTime}}</b>
+        <p v-if="singertitle.desc != null && singertitle.desc !=''">
+          <b>【描述】:</b>
+          {{singertitle.desc}}
+        </p>
+      </div>
+      <p>与{{singertitle.artistName}}相关</p>
+      <div class="xgmvcss">
+        <van-grid :column-num="2" icon-size="138px" :dot="true" :border="false">
+          <van-grid-item
+            v-for="(xgmv,index) in xgMV"
+            :key="index"
+            :icon="xgmv.coverUrl"
+            :text="xgmv.title"
+          />
+        </van-grid>
+      </div>
+      <div class="common" v-for="(item,i) in discuss" :key="i">
+        <div class="allUser">
+          <div class="touxiang">
+            <img :src="item.user.avatarUrl" alt srcset />
+          </div>
+          <div class="inner">
+            <p class="com">
+              {{item.user.nickname}}
+              <b class="timer">【{{item.time | formatDate}}】</b>
+            </p>
+            <p>{{item.content}}</p>
+          </div>
         </div>
       </div>
+      <div style="height:60px"></div>
     </div>
-    <div style="height:60px"></div>
-  </div>
+  </van-pull-refresh>
 </template>
 <script>
 import axios from "axios";
 import { formatDate } from "../../time";
 export default {
+  data() {
+    return {
+      playMV: "",
+      xgMV: [],
+      singertitle: "",
+      discuss: "",
+      isLoading: false
+    };
+  },
   methods: {
     toFrom() {
       this.$router.go(-1);
+    },
+    onRefresh() {
+      setTimeout(() => {
+        this.$toast("刷新成功");
+        this.isLoading = false;
+        this.count++;
+      }, 1000);
     }
   },
   filters: {
@@ -66,14 +84,6 @@ export default {
       var data = new Date(time);
       return formatDate(data, "yyyy-MM-dd");
     }
-  },
-  data() {
-    return {
-      playMV: "",
-      xgMV: [],
-      singertitle: "",
-      discuss: ""
-    };
   },
   created() {
     var id = localStorage.getItem("token");
