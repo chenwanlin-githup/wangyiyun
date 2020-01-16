@@ -59,6 +59,9 @@ export default {
 };
 </script>
 <style  scoped>
+* {
+  text-align: center;
+}
 .div-huo {
   width: 100px;
   height: 100px;

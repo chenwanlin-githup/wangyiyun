@@ -17,7 +17,9 @@
 		<p style="padding:0 0 10px 20px;">每天听些好节目</p>
 		
 		<div class="main">
-			<div class="main-lt"></div>
+			<div class="main-lt">
+				<img style="width: 100%;" src="http://img2.imgtn.bdimg.com/it/u=3491069444,2834042914&fm=26&gp=0.jpg" />
+			</div>
 			<div class="main-rt">
 				<p>凉凉-丸子/神秘男水友</p>
 				<p>丸子www</p>
@@ -25,7 +27,9 @@
 		</div>
 		
 		<div class="main">
-			<div class="main-lt"></div>
+			<div class="main-lt">
+				<img style="width: 100%;" src="http://img3.imgtn.bdimg.com/it/u=1752841181,399464128&fm=26&gp=0.jpg" />
+			</div>
 			<div class="main-rt">
 				<p>凉凉-丸子/神秘男水友</p>
 				<p>丸子www</p>
@@ -33,7 +37,9 @@
 		</div>
 		
 		<div class="main">
-			<div class="main-lt"></div>
+			<div class="main-lt">
+				<img style="width: 100%;" src="http://img4.imgtn.bdimg.com/it/u=567380022,2307493600&fm=15&gp=0.jpg"/>
+			</div>
 			<div class="main-rt">
 				<p>凉凉-丸子/神秘男水友</p>
 				<p>丸子www</p>
@@ -42,24 +48,48 @@
 		
 		<!-- 电台个性推荐> -->
 		<p style="padding:0 0 10px 20px;">电台个性推荐></p>
-		<van-grid :gutter="10" :column-num="3">
-		  <van-grid-item
-		    v-for="value in 6"
-		    :key="value"
-		    icon="photo-o"
-		    text="程一电台"
-		  />
+		<van-grid :border="false" :column-num="3">
+		  <van-grid-item>
+		    <van-image src="http://img3.imgtn.bdimg.com/it/u=3657224390,1243000937&fm=26&gp=0.jpg" />
+			<div>哪吒大人</div>
+		  </van-grid-item>
+		  <van-grid-item>
+		    <van-image src="https://p1.music.126.net/XOKqiHGykghX2DovFaIoAQ==/109951163239625308.jpg?param=177y177" />
+		  		<div>女友FM</div>
+		  </van-grid-item>
+		  <van-grid-item>
+		    <van-image src="http://img0.imgtn.bdimg.com/it/u=263014477,481228463&fm=26&gp=0.jpg" />
+		  		<div>谛听大人</div>
+		  </van-grid-item>
+		  <van-grid-item>
+		    <van-image src="http://img1.imgtn.bdimg.com/it/u=3948478582,1012098103&fm=26&gp=0.jpg" />
+		  		<div>人间集</div>
+		  </van-grid-item>
+		  <van-grid-item>
+		    <van-image src="http://img4.imgtn.bdimg.com/it/u=1224323170,3087082366&fm=26&gp=0.jpg" />
+		  		<div>小星牌MP3</div>
+		  </van-grid-item>
+		  <van-grid-item>
+		    <van-image src="http://p1.music.126.net/QOT67VdrSzdg9YtayJdojQ==/109951164211083951.jpg?param=200y200" />
+		  		<div>FM夜话</div>
+		  </van-grid-item>
 		</van-grid>
 		
 		<!-- 明星做主播> -->
 		<p style="padding:0 0 10px 20px;">明星做主播></p>
-		<van-grid :gutter="10" :column-num="3">
-		  <van-grid-item
-		    v-for="value in 3"
-		    :key="value"
-		    icon="photo-o"
-		    text="谭松韵"
-		  />
+		<van-grid :border="false" :column-num="3">
+		  <van-grid-item>
+		    <van-image src="http://img1.imgtn.bdimg.com/it/u=2863537863,1593168458&fm=26&gp=0.jpg" />
+			<div>小白</div>
+		  </van-grid-item>
+		  <van-grid-item>
+		    <van-image src="http://img.zcool.cn/community/016ba85e1c5db2a80121651868feb7.jpg@1280w_1l_2o_100sh.jpg" />
+		  		<div>无限姐姐</div>
+		  </van-grid-item>
+		  <van-grid-item>
+		    <van-image src="http://img1.imgtn.bdimg.com/it/u=2678922936,359304961&fm=26&gp=0.jpg" />
+		  		<div>哥哥</div>
+		  </van-grid-item>
 		</van-grid>
 		
 		<!-- 热门分类 -->

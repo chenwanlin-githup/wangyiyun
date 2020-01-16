@@ -201,6 +201,7 @@ export default {
 <style scoped>
 .account {
   padding-bottom: 50px;
+  text-align: center;
 }
 /* head */
 .height {

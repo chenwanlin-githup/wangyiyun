@@ -5,22 +5,17 @@
         <van-icon name="arrow-left" @click="toFrom()" />
       </div>
       <div>
-        <img
-          class="login-logo"
-          src="http://pic244.nipic.com/file/20191009/29466618_175801826534_2.jpg"
-          alt
-        />
+        <img class="login-logo" src="../assets/accountimage/loginOther/wangyiyun.jpg" alt />
       </div>
     </div>
 
     <div class="login-iphon">
-      <van-button round color="red" plain block :to="{name:'loginiPhone'}">手机号登录</van-button>
+      <van-button round color="red" plain block :to="{ name: 'loginiPhone' }">手机号登录</van-button>
     </div>
     <div class="login-zhuce">
-      <van-button round color="red" plain block :to="{name:'loginRegister'}">注册</van-button>
+      <van-button round color="red" plain block :to="{ name: 'loginRegister' }">注册</van-button>
     </div>
 
-    <van-button size="small" plain round color="red" :to="{name:'find'}">游客登录</van-button>
     <div class="login-other">其它登录方式</div>
     <ul class="login-other-img">
       <li>
@@ -59,11 +54,15 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  text-align: center;
+}
 .login {
   height: 100%;
   background: url("../assets/accountimage/loginOther/red.jpg") no-repeat;
   background-size: 1000px 1000px;
   background-position-y: -200px;
+  overflow: hidden;
 }
 .login-icon-arrow {
   padding: 10px;
@@ -87,11 +86,11 @@ export default {
 .login-other {
   width: 100px;
   margin: 0 auto;
-  margin-top: 160px;
+  margin-top: 250px;
 }
 .login-other-img {
   overflow: hidden;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .login-other-img > li {
   float: left;
