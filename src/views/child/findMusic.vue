@@ -1,13 +1,13 @@
 <template>
-  <div id="main"> 
+  <div id="main">
 	  <div class="nav">
 		<van-icon
 		 name="volume-o"
 		 class="nav-lt"
 		 @click="toTinggeshiqu()"
 		 />
-		<input type="text" 
-			placeholder="搜多音乐.歌词.电台" 
+		<input type="text"
+			placeholder="搜多音乐.歌词.电台"
 			class="nav-main"
 			@click="toSearch()"
 			/>
@@ -22,8 +22,9 @@
 				 <router-link :to="{name : 'diantai'}">电台</router-link>
 				 <router-link :to="{name : 'paihang'}">排行榜</router-link>
 			 </div>
-			 <div class="taber-buttom"> 
+			 <div class="taber-buttom">
 				 <router-view></router-view>
+
 			 </div>
 		  </div>
 	  </div>
@@ -35,7 +36,7 @@
 		name:'find',
 		data(){
 			return{
-				 
+
 			}
 		},
 		methods:{
@@ -48,9 +49,12 @@
 			toTinggeshiqu(){
 				this.$router.push({name:"tinggeshiqu"})
 			}
-		}
+    },
+    mounted(){
+      console.log(1)
+    }
 	}
-	
+
 </script>
 
 <style scoped="scoped">
@@ -82,7 +86,7 @@
 .nav-rt{
 	font-size: 30px;
 }
-/* 
+/*
 	头部结束
  */
 
@@ -99,5 +103,5 @@ a{
 
 
 
-	
+
 </style>
