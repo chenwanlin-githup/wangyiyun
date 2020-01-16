@@ -72,6 +72,6 @@ export default {
 #myVideo {
   position: absolute;
   bottom: 0;
-  left: 70px;
+  left: 20px;
 }
 </style>
