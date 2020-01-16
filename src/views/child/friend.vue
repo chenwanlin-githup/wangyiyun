@@ -145,7 +145,6 @@ export default {
       setTimeout(() => {
         this.$toast("▄︻┻┳═一枪手 刷新成功");
         this.isLoading = false;
-        this.count++;
       }, 1000);
     },
     fjdt(res) {
