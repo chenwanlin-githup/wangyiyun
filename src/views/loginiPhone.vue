@@ -46,12 +46,6 @@ export default {
           this.$router.push({
             name: "find"
           });
-          // axios.get(
-          //   "http://net-music.penkuoer.com//user/detail?uid=" +
-          //     res.data.account.id
-          // ).then((res)=>{
-          //   console.log(res)
-          // });
         })
         .catch(err => {
           console.log(err);

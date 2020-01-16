@@ -34,6 +34,7 @@ export default {
     addName() {
       console.log(this.userName);
       //phone=17633646172&password=123456789&captcha=2633&nickname=2450673382
+      //调用此接口 ,传入手机号码和验证码,密码,昵称, 可注册网易云音乐账号(同时可修改密码)
       axios
         .post(
           "http://net-music.penkuoer.com/register/cellphone?phone=" +

@@ -159,6 +159,7 @@
 </template>
 <script>
 import axios from "axios";
+import { getMusicuserdetail } from "../../utils/axiosRequile";
 export default {
   name: "account",
   data() {
@@ -173,8 +174,8 @@ export default {
   },
   created() {
     let id = JSON.parse(localStorage.getItem("token"));
-    axios
-      .get("http://net-music.penkuoer.com/user/detail?uid=" + id)
+    //获取用户详情
+    getMusicuserdetail(id)
       .then(res => {
         this.headImg = res.data.profile.avatarUrl;
         this.Name = res.data.profile.nickname;
@@ -202,6 +203,7 @@ export default {
 .account {
   padding-bottom: 50px;
   text-align: center;
+  overflow: hidden;
 }
 /* head */
 .height {
