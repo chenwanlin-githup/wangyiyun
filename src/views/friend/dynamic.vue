@@ -54,17 +54,10 @@ export default {
         //console.log(res.data.comments[0].time);
         // 歌单评论
         this.gdpl = res.data.comments;
-      }),
-      axios
-        .get(
-          "http://net-music.penkuoer.com/comment/playlist?id=" +
-            this.$route.query.id
-        )
-        .then(res => {
-          console.log(res.data.total);
-          // 歌单评论条数
-          this.gdplNumber = res.data.total;
-        });
+        //console.log(res.data.total);
+        // 歌单评论条数
+        this.gdplNumber = res.data.total;
+      });
   }
 };
 </script>

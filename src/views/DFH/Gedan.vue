@@ -2,7 +2,9 @@
 	<div class="app">
 		
 		<div class="tu">
-			<div class="tu-lt"></div>
+			<div class="tu-lt">
+				<img style="width: 100%;" src="http://img5.imgtn.bdimg.com/it/u=3433447979,1619965462&fm=11&gp=0.jpg"/>
+			</div>
 			<div class="tu-rt">
 				<p>精品歌单></p>
 				<p>评论过万的英文歌与潜力股</p>
@@ -23,7 +25,11 @@
 		<div class="main">
 			
 			<div class="main-lt"> 
-				<div class="main-top">
+				<div class="main-top"
+				style="background:url('http://img4.imgtn.bdimg.com/it/u=2200075786,1137830760&fm=11&gp=0.jpg');
+					background-repeat: no-repeat;
+					background-size: 100% 100%;"
+				>
 					<div class="main-t-t">
 						<van-icon name="audio" />
 						<p>207万</p>
@@ -34,7 +40,11 @@
 			</div>
 			
 			<div class="main-lt">
-				<div class="main-top">
+				<div class="main-top"
+				style="background:url('http://img2.imgtn.bdimg.com/it/u=1211110498,1817134192&fm=11&gp=0.jpg');
+					background-repeat: no-repeat;
+					background-size: 100% 100%;"
+				>
 					<div class="main-t-t">
 						<van-icon name="audio" />
 						<p>207万</p>
@@ -45,7 +55,11 @@
 			</div>
 			
 			<div class="main-lt">
-				<div class="main-top">
+				<div class="main-top"
+				style="background:url('http://img5.imgtn.bdimg.com/it/u=2717241025,1528806694&fm=26&gp=0.jpg');
+					background-repeat: no-repeat;
+					background-size: 100% 100%;"
+				>
 					<div class="main-t-t">
 						<van-icon name="audio" />
 						<p>207万</p>
@@ -56,7 +70,11 @@
 			</div>
 			
 			<div class="main-lt">
-				<div class="main-top">
+				<div class="main-top"
+				style="background:url('http://img5.imgtn.bdimg.com/it/u=1066422205,467371090&fm=26&gp=0.jpg');
+					background-repeat: no-repeat;
+					background-size: 100% 100%;"
+				>
 					<div class="main-t-t">
 						<van-icon name="audio" />
 						<p>207万</p>
@@ -67,7 +85,11 @@
 			</div>
 			
 			<div class="main-lt">
-				<div class="main-top">
+				<div class="main-top"
+				style="background:url('http://img2.imgtn.bdimg.com/it/u=2040276409,1650560011&fm=26&gp=0.jpg');
+					background-repeat: no-repeat;
+					background-size: 100% 100%;"
+				>
 					<div class="main-t-t">
 						<van-icon name="audio" />
 						<p>207万</p>
@@ -78,7 +100,11 @@
 			</div>
 			
 			<div class="main-lt">
-				<div class="main-top">
+				<div class="main-top"
+				style="background:url('http://img3.imgtn.bdimg.com/it/u=144166055,3232843084&fm=26&gp=0.jpg');
+					background-repeat: no-repeat;
+					background-size: 100% 100%;"
+				>
 					<div class="main-t-t">
 						<van-icon name="audio" />
 						<p>207万</p>
@@ -89,6 +115,8 @@
 			</div>
 
 		</div>
+		
+		<p class="teshu"> 懒得写了 别划拉了 </p>
 		
 		
 	</div>
@@ -155,16 +183,22 @@ p{
 	flex-direction: column;
 	justify-content: space-between;
 	margin:5px 0;
-	background:url(../../assets/u=3123027508,3640820941&fm=26&gp=0.jpg);
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
 }
 .main-t-t{
 	display: flex;
 	justify-content: flex-end;
 }
 
-
+.teshu{
+	margin-top: 20px;
+	height: 100px;
+	line-height: 100px;
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+	background: #000;
+	color: #fff;
+}
 
 
 </style>

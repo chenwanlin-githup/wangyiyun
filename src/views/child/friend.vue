@@ -1,109 +1,110 @@
 <template>
-  <div id="friend">
-    <van-tabs sticky route replace swipeable animated color="#90ee90" v-model="active">
-      <van-tab>
-        <!-- 轮播图 -->
-        <van-swipe :autoplay="3000" indicator-color="white">
-          <van-swipe-item v-for="(i,id) in lbtimages" :key="id">
-            <img :src="i.pic" width="100%"  @click="LBTsong(i.song.id)" />
-          </van-swipe-item>
-        </van-swipe>
-        <!-- topics热门话题 -->
-        <div class="topics">
-          <h4>电台指南</h4>
-          <van-swipe :loop="false" :width="200" :show-indicators="false">
-            <van-swipe-item v-for="(i,index) in topic" :key="index">
-              <img :src="i.user.avatarUrl" style="width:150px"/>
-              <p style="font-size:12px;width:150px">【{{i.user.nickname}}】{{i.content}}</p>
+  <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+    <div id="friend">
+      <van-tabs sticky route replace swipeable animated color="#90ee90" v-model="active">
+        <van-tab>
+          <!-- 轮播图 -->
+          <van-swipe :autoplay="3000" indicator-color="white">
+            <van-swipe-item v-for="(i,id) in lbtimages" :key="id">
+              <img :src="i.pic" width="100%" @click="LBTsong(i.song.id)" />
             </van-swipe-item>
           </van-swipe>
-        </div>
-        <!-- lick图情感屏幕 -->
-        <div
-          class="link"
-          v-for="(i,index) in links"
-          :key="index"
-          :style="{background: 'url( '+ i.coverImgUrl +')'}"
-        >
-          {{i.name}}
-          <p>
-            <b>
-              <i>{{i.subscribedCount}}</i>人
-            </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <van-button
-              icon="good-job"
-              type="primary"
-              text="点赞"
-              size="mini"
-              click
-              color="#000"
-              plain
-            />
-          </p>
-        </div>
-        <div style="height:50px"></div>
-
-        <div slot="title">
-          <van-icon name="hot-o" />
-        </div>
-      </van-tab>
-      <van-tab title="艺人MV">
-        <ul class="tab2" v-for="(video,id) in mv" :key="id" @click="bfmv(video.id)">
-          <li>
+          <!-- topics热门话题 -->
+          <div class="topics">
+            <h4>电台指南</h4>
+            <van-swipe :loop="false" :width="200" :show-indicators="false">
+              <van-swipe-item v-for="(i,index) in topic" :key="index">
+                <img :src="i.user.avatarUrl" style="width:150px" />
+                <p style="font-size:12px;width:150px">【{{i.user.nickname}}】{{i.content}}</p>
+              </van-swipe-item>
+            </van-swipe>
+          </div>
+          <!-- lick图情感屏幕 -->
+          <div
+            class="link"
+            v-for="(i,index) in links"
+            :key="index"
+            :style="{background: 'url( '+ i.coverImgUrl +')'}"
+          >
+            {{i.name}}
             <p>
-              <b style="font-size:18px;color:#999;text-decoration:line-through;">{{video.name}}</b>
-              <img :src="video.cover" width="100%" />
-              艺术家:
-              <b style="color:#0099FF">{{video.artistName}}</b>
-              播放次数
-              <b style="color:#FF0066">{{video.playCount}}</b>
+              <b>
+                <i>{{i.subscribedCount}}</i>人
+              </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <van-button
+                icon="good-job"
+                type="primary"
+                text="点赞"
+                size="mini"
+                click
+                color="#000"
+                plain
+              />
             </p>
-          </li>
-          <li class="button">
-            <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;
-            <i>36</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;
-            <i>3</i>&nbsp;&nbsp;&nbsp;
-            <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;
-            <i>转发</i>
-          </li>
-          <hr />
-        </ul>
-        <div style="height:50px"></div>
-      </van-tab>
-      <van-tab title="附近动态">
-        <dl class="nearby-dl" v-for="(sites) in site" :key="sites.id" @click="fjdt(sites.id)">
-          <img :src="sites.creator.avatarUrl" width="100%" />
-          <dt>
-            <img :src="sites.creator.backgroundUrl" alt />
-          </dt>
-          <dd>
-            <p style="color:red">
-              <b>【{{sites.name}}】</b>
-              {{sites.trackCount}}km
-            </p>
-          </dd>
-          <dd>
-            <p>上次更改：{{sites.updateTime | formatDate}}</p>
-            <p>提供者：--{{sites.creator.nickname}}--</p>
-          </dd>
-        </dl>
-        <div style="height:50px"></div>
-      </van-tab>
-      <van-tab :to="{name:'playMusic',query:{url:'friend'}}">
-        内容4
-        <div slot="title">
-          <van-icon name="music" />
-        </div>
-      </van-tab>
-    </van-tabs>
-  </div>
+          </div>
+          <div style="height:50px"></div>
+
+          <div slot="title">
+            <van-icon name="hot-o" />
+          </div>
+        </van-tab>
+        <van-tab title="艺人MV">
+          <ul class="tab2" v-for="(video,id) in mv" :key="id" @click="bfmv(video.id)">
+            <li>
+              <p>
+                <b style="font-size:18px;color:#999;text-decoration:line-through;">{{video.name}}</b>
+                <img :src="video.cover" width="100%" />
+                艺术家:
+                <b style="color:#0099FF">{{video.artistName}}</b>
+                播放次数
+                <b style="color:#FF0066">{{video.playCount}}</b>
+              </p>
+            </li>
+            <li class="button">
+              <van-button icon="thumb-circle-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;
+              <i>36</i>&nbsp;&nbsp;&nbsp;
+              <van-button icon="orders-o" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;
+              <i>3</i>&nbsp;&nbsp;&nbsp;
+              <van-button icon="share" size="mini" type="primary" color="#000" plain />&nbsp;&nbsp;&nbsp;
+              <i>转发</i>
+            </li>
+            <hr />
+          </ul>
+          <div style="height:50px"></div>
+        </van-tab>
+        <van-tab title="附近动态">
+          <dl class="nearby-dl" v-for="(sites) in site" :key="sites.id" @click="fjdt(sites.id)">
+            <img :src="sites.creator.avatarUrl" width="100%" />
+            <dt>
+              <img :src="sites.creator.backgroundUrl" alt />
+            </dt>
+            <dd>
+              <p style="color:red">
+                <b>【{{sites.name}}】</b>
+                {{sites.trackCount}}km
+              </p>
+            </dd>
+            <dd>
+              <p>上次更改：{{sites.updateTime | formatDate}}</p>
+              <p>提供者：--{{sites.creator.nickname}}--</p>
+            </dd>
+          </dl>
+          <div style="height:50px"></div>
+        </van-tab>
+        <van-tab :to="{name:'playMusic',query:{url:'friend'}}">
+          内容4
+          <div slot="title">
+            <van-icon name="music" />
+          </div>
+        </van-tab>
+      </van-tabs>
+    </div>
+  </van-pull-refresh>
 </template>
 
 <script>
 import axios from "axios"; //引入axiso组件
 import { formatDate } from "../../time";
-
 export default {
   data() {
     return {
@@ -112,7 +113,8 @@ export default {
       mv: [],
       topic: [],
       site: [],
-      active: 1
+      active: 0,
+      isLoading: false
     };
   },
   filters: {
@@ -139,6 +141,13 @@ export default {
         }
       });
     },
+    onRefresh() {
+      setTimeout(() => {
+        this.$toast("▄︻┻┳═一枪手 刷新成功");
+        this.isLoading = false;
+        this.count++;
+      }, 1000);
+    },
     fjdt(res) {
       //console.log(res)
       this.$router.push({
@@ -151,7 +160,7 @@ export default {
     LBTsong(res) {
       //console.log(res)
       this.$router.push({
-        name: "LBT-song",
+        name: "playMusic",
         query: {
           id: res
         }
@@ -189,7 +198,7 @@ export default {
         this.mv = res.data.data;
       }),
       axios
-        .get("http://net-music.penkuoer.com/top/playlist?limit=10&order=hot")
+        .get("http://net-music.penkuoer.com/top/playlist?limit=8&order=hot")
         .then(res => {
           //console.log(res.data.playlists[0].id)
           //附近动态
@@ -201,7 +210,7 @@ export default {
 
 <style scoped>
 .topics h4 {
-  margin:0.5em 2em;
+  margin: 0.5em 2em;
 }
 
 .link {
@@ -232,6 +241,9 @@ export default {
   background: skyblue;
 }
 
+.tab2 li img {
+  border-radius: 25px;
+}
 .tab2 li i {
   font-size: 12px;
   font-style: normal;
@@ -254,6 +266,8 @@ export default {
   box-shadow: 10px 10px 5px #888888;
   border-radius: 50px;
   overflow: hidden;
+  width: 90%;
+  margin: 30px auto;
   text-align: center;
 }
 

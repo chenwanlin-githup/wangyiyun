@@ -38,6 +38,9 @@ export default {
     toTinggeshiqu() {
       this.$router.push({ name: "tinggeshiqu" });
     }
+  },
+  mounted() {
+    console.log(1);
   }
 };
 </script>
