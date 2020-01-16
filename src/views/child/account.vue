@@ -14,7 +14,7 @@
     </van-nav-bar>
     <div>
       <ul class="head">
-        <li>
+        <li @click="todenglu()">
           <img :src="headImg" alt />
         </li>
         <li>
@@ -153,7 +153,12 @@
       </div>
     </div>
     <div class="tuichu-denglu">
-      <van-button type="primary" block :to="{name:'login',query:{url:'account'}}">退出登录</van-button>
+      <van-button
+        type="primary"
+        block
+        :to="{name:'login',query:{url:'account'}}"
+        @click="tuichu()"
+      >退出登录</van-button>
     </div>
   </div>
 </template>
@@ -188,6 +193,13 @@ export default {
       });
   },
   methods: {
+    todenglu() {
+      if (this.headImg == "") {
+        this.$router.push({
+          name: "login"
+        });
+      }
+    },
     toPlay() {
       this.$router.push({
         name: "playMusic",
@@ -195,6 +207,18 @@ export default {
           url: "account"
         }
       });
+    },
+    tuichu() {
+      let id = JSON.parse(localStorage.getItem("token"));
+      axios
+        .post("http://net-music.penkuoer.com/logout")
+        .then(res => {
+          console.log(res);
+          window.localStorage.clear();
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
