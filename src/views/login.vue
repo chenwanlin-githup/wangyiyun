@@ -4,9 +4,7 @@
       <div class="login-icon-arrow">
         <van-icon name="arrow-left" @click="toFrom()" />
       </div>
-      <div>
-        <img class="login-logo" src="../assets/accountimage/loginOther/wangyiyun.jpg" alt />
-      </div>
+      <div style="font-size:40px;color:red">黄昏光芒</div>
     </div>
 
     <div class="login-iphon">
